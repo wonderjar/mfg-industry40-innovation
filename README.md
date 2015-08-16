@@ -16,3 +16,6 @@ Then start node server with `nodemon bin/www`
 
 # Issues
 - If face issue in npm install, add parameter -ddd like `npm install gulp -g -ddd` to check detailed log
+
+# Tool
+- Recommend some tools WebStorm, Sublime, SourceTree, iTerm
