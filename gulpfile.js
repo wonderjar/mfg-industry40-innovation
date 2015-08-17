@@ -8,15 +8,14 @@ var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var clean = require('gulp-clean');
 
-var lessSrc = './src/less';
-var coffeeSrc = './src/coffeescript';
+var modelSrc = './src/model';
 var jsSrc = './public/javascripts';
 var cssSrc = './public/stylesheets';
 var jsDist = './public/dist/js';
 var cssDist = './public/dist/css';
 
 gulp.task('less', function () {
-  return gulp.src(lessSrc + '/**/*.less')
+  return gulp.src(modelSrc + '/**/*.less')
     .pipe(less({
       paths: [path.join(__dirname, 'less', 'includes')]
     }))
@@ -33,7 +32,7 @@ gulp.task('minify-css', ['less'], function () {
 });
 
 gulp.task('coffee', function () {
-  gulp.src(coffeeSrc + '/**/*.coffee')
+  gulp.src(modelSrc + '/**/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest(jsSrc));
 });
@@ -56,5 +55,5 @@ gulp.task('uglify', ['coffee', 'clean-scripts'], function () {
 
 gulp.task('default', ['minify-css', 'uglify']);
 
-gulp.watch(lessSrc + '/**/*.less', ['minify-css']);
-gulp.watch(coffeeSrc + '/**/*.coffee', ['uglify']);
+gulp.watch(modelSrc + '/**/*.less', ['minify-css']);
+gulp.watch(modelSrc + '/**/*.coffee', ['uglify']);
