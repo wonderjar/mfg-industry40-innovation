@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="66f79b47-8d3d-4fbe-9bce-e2d9a88e610b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/audi_black.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/audi_red.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/audi_white.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/bwm_gold.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/bwm_red.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/bwm_white.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/chevrolet_red.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/chevrolet_yellow.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/ford_orange.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/ford_silvery.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/ford_white.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/porsche_black.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/porsche_red.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/lib/car/porsche_silvery.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SIA.iml" afterPath="$PROJECT_DIR$/.idea/SIA.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/main.coffee" afterPath="$PROJECT_DIR$/src/model/main.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/order.js" afterPath="$PROJECT_DIR$/controller/order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/order/order_new.jade" afterPath="$PROJECT_DIR$/views/order/order_new.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_router.js" afterPath="$PROJECT_DIR$/web_router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="66f79b47-8d3d-4fbe-9bce-e2d9a88e610b" name="Default" comment="" />
     <ignored path="SIA.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -489,7 +467,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16630785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
