@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(charset='utf-8')
+        link(rel='stylesheet', href='/stylesheets/order/order.css')
+        title= 'Industry40-Innovation'
+        script(src='/lib/zepto/zepto.js')
+        block head
+    body
+        script(src='/javascripts/order/order.js')
+        .image-panel
+            img#car-img(src='/lib/car/audi_white.jpg')
+            #car-name.car-name
+                span 奥迪R8 （白）
+        .panel
+            .car-type
+                .type-title 车型
+                .type-list
+                    each item,index in ['奥迪','宝马', '保时捷','福特','雪弗兰']
+                        button(id='type#{index}', class=['btn-primary','btn-unselected']) #{item}
+                hr
+            .color
+                .color-title 颜色
+                .color-list
+                    each element,index in ['白色','橙色','黄色','黑色','红色','金色','银色']
+                        button(id='color#{index}', class=['btn-primary','btn-unselected']) #{element}
+            .btn-submit 下单
+
