@@ -1,0 +1,52 @@
+@import "../variable";
+@import "../mixin";
+body{
+  background-color: @light_grey;
+  margin: 0;
+  padding: 0;
+  .image-panel{
+    .bg_white;
+    img{
+      width: 100%;
+    }
+    .car-name{
+      font-size: 14px;
+      font-weight: 600;
+      color: #666666;
+      padding: 6px 0;
+      margin: 4px 22px;
+    }
+  }
+  .panel {
+    margin-top:3%;
+    font-size: 12px;
+    padding: 1px 0;
+    border-radius: 3px;
+    .bg_white;
+  }
+  .btn-primary {
+    padding: 6px 14px;
+    width: 70px;
+    height: 28px;
+    margin: 8px 6px;
+    display: inline-block;
+    font-size: 13px;
+    border: 1px solid;
+    border-radius: 4px;
+  }
+}
+hr{
+  height: 1px;
+  border:none;
+  border-top:1px solid @grey;
+  margin-top: 5px;
+}
+.type-title,.color-title{
+  margin-left: 10px;
+  color: #888888;
+  font-size: 12px;
+}
+.car-type,.color{
+  margin: 10px;
+  margin-bottom: 0px;
+}
