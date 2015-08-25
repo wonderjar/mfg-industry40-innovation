@@ -14,6 +14,10 @@ $(document).ready ->
     fun = if this.id.indexOf('type') is -1 then 1 else 0
     num = if fun is 0 then this.id.substring this.id.indexOf('type') + 4,this.id.indexOf('type') + 5 else this.id.substring this.id.indexOf('color') + 5, this.id.indexOf('color') + 6
     selCar this, fun, num
+  $('#submit').click ->
+    if $('#submit').hasClass('btn-unavailable')
+      return
+    PostOrder(car_type, car_color)
 
   hasClass = (obj, cls) ->
     obj.className.match new RegExp '(\\s|^)' + cls + '(\\s|$)'
@@ -40,6 +44,8 @@ $(document).ready ->
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#car-name > span').text car_name[car_color][car_type]
+          if $('#submit').hasClass 'btn-unavailable'
+            $('#submit').toggleClass 'btn-unavailable btn-available'
       else
         if hasClass obj, 'btn-unselected'
           obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
@@ -53,8 +59,10 @@ $(document).ready ->
           if car_color isnt -1
             $('#car-img').attr 'src', [car_color][car_type]
             $('#car-name > span').text car_name[car_color][car_type]
+            $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           obj.className = obj.className.replace 'btn-selected', 'btn-unselected'
+          $('#submit').toggleClass 'btn-available btn-unavailable'
           car_type = -1
     else
       for i in [0..4]
@@ -75,6 +83,8 @@ $(document).ready ->
         if car_type isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#car-name > span').text car_name[car_color][car_type]
+          if $('#submit').hasClass 'btn-unavailable'
+            $('#submit').toggleClass 'btn-unavailable btn-available'
       else
         if hasClass obj, 'btn-unselected'
           obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
@@ -88,6 +98,33 @@ $(document).ready ->
           if car_type isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#car-name > span').text car_name[car_color][car_type]
+            $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           obj.className = obj.className.replace 'btn-selected', 'btn-unselected'
+          $('#submit').toggleClass 'btn-available btn-unavailable'
           car_color = -1
+  BaseUrl = 'http://localhost:3000/api/v1/orders'
+  PostOrder = (car_type, car_color) ->
+    data = {car_type: car_type, car_color: car_color}
+    $.ajax({
+      url: BaseUrl,
+      type: "POST",
+      dataType: "json",
+      data: data,
+      cache: false,
+      async: true,
+      headers: {
+        contentType: "application/json"
+      }
+      crossDomain: true,
+      success: (data) ->
+        if data.id
+          alert 'post successfully'
+          localStorage['orderId'] = data.id
+        else
+          alert 'post is fail',
+      error: (xmlHttpRequest, textStatus, errorThrown) ->
+        alert errorThrown
+        if (xmlHttpRequest.readyState is 0) or (xmlHttpRequest.status is 0)
+          alert 'Request is fail'
+    })
