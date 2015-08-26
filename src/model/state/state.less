@@ -1,0 +1,101 @@
+@import "../variable";
+@import "../mixin";
+body{
+  background: @light_grey;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+.line{
+  width: 50%;
+  background-color: transparent;
+  border-right: 15px dashed black;
+  height: 280px;
+}
+.tag{
+  width: 100px;
+  height: 50px;
+  background-color: @darker_grey;
+  text-align: center;
+}
+.tag_right{
+  border-radius: 0 7px 7px 0;
+}
+.tag_left{
+  border-radius: 7px 0 0 7px;
+}
+.text{
+  margin-top: 13px;
+}
+#status1{
+  position: absolute;
+  top: @top_start;
+  left: @lr_margin;
+}
+#status1::after{
+  content: "";
+  .add_right;
+  border-color: transparent transparent transparent @darker_grey;
+ }
+#status2{
+  position: absolute;
+  top: @top_start + 80;
+  right: @lr_margin;
+}
+#status2::after{
+  content: "";
+  .add_left;
+  border-color: transparent @darker_grey transparent transparent;
+}
+#status3{
+  position: absolute;
+  top: @top_start + 120;
+  left: @lr_margin;
+}
+#status3::after{
+  content: "";
+  .add_right;
+  border-color: transparent transparent transparent @darker_grey;
+}
+#status4{
+  position: absolute;
+  top: 565px;
+  right: @lr_margin;
+}
+#status4::after{
+  content: "";
+  .add_left;
+  border-color: transparent @darker_grey transparent transparent;
+}
+.ready{
+  color: white;
+}
+.hrline{
+  width: 100%;
+  height: 100px;
+  border-bottom: 15px dashed #000;
+  padding: 50px 0 0 20px;
+}
+.details{
+  max-width: 150px;
+  padding: 10px 0 10px 0;
+  border: 3px @darker_grey solid;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: @darker_grey;
+}
+.empty{
+  height: 100px;
+  width: 100%;
+}
+.complete{
+  margin: 5px 20px;
+  padding: 10px 0;
+  text-align: center;
+  color: @light_grey;
+  background: @darker_grey;
+  border-radius: 10px;
+  border-color: @light_grey;
+}
