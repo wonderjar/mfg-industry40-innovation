@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
+        meta(charset='utf-8')
+        link(rel='stylesheet', href='/stylesheets/state/state.css')
+        link(rel='stylesheet', href='/lib/styles/style.css')
+        script(src='/lib/zepto/zepto.js')
+body
+    script(src='/javascripts/state/state.js')
+    .line
+    #status1(class=['tag','tag_left','ready'])
+        .text 订单已提交
+    #status2(class=['tag','tag_right','ready'])
+        .text 订单已在ERP创建
+    #status3(class=['tag','tag_left','ready'])
+        .text 订单已下达到MES
+    .hrline
+        .details Initialization RFID
+    .empty
+    .line
+    #status4(class=['tag','tag_right','ready'])
+        .text 订单生产完成
+    .complete
+        p 小车已装配完成
+        p 给它起个好听点的名字吧
+
