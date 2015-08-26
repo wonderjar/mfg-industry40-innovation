@@ -25,6 +25,6 @@ html
                 .color-title 颜色
                 .color-list
                     each element,index in ['白色','橙色','黄色','黑色','红色','金色','银色']
-                        button(id='color#{index}', class=['btn-primary','btn-unselected']) #{element}
+                        button(id='color#{index}', class=['color-primary','color#{index}'])
             #submit(class=['btn-submit','btn-unavailable']) 下单
 
