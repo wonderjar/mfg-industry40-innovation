@@ -1,4 +1,15 @@
-extends layout/default
-
-block content
-  h1= 'SAP - MFG Industry40 Innovation Project'
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    title= 'Welcome-Industry40-Innovation'
+    block head
+  body
+    .background
+      .welcome_button 立即体验工业4.0
+      .icons
+        .icon_sia
+          .icon_sap
+    script(src="/javascripts/main.js")
