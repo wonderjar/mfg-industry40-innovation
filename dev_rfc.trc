@@ -1,0 +1,134 @@
+
+**** Trace file opened at 2015-08-19, 16:05:27 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+Error during connect: 
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       partner '111.22.33.177:3299' not reached
+TIME        Wed Aug 19 16:05:27 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 111.22.33.177:3299
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+
+
+**** Trace file opened at 2015-08-19, 16:06:48 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+Error during connect: 
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       partner '111.22.33.177:3299' not reached
+TIME        Wed Aug 19 16:06:48 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 111.22.33.177:3299
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+
+
+**** Trace file opened at 2015-08-19, 16:10:31 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+Error during connect: 
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       partner '111.22.33.177:3299' not reached
+TIME        Wed Aug 19 16:10:31 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 111.22.33.177:3299
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+
+
+**** Trace file opened at 2015-08-19, 16:20:23 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+Error during connect: 
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       partner '10.0.0.1:3300' not reached
+TIME        Wed Aug 19 16:20:23 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.0.0.1:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+
+
+**** Trace file opened at 2015-08-19, 16:36:45 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+Error during connect: 
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       partner '10.65.26.107:3300' not reached
+TIME        Wed Aug 19 16:36:45 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.65.26.107:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+
+
+**** Trace file opened at 2015-08-20, 17:05:01 China Standard Time
+ RFC library: 721, Current working directory: D:\Work\SIA\sap-mfg-industry40-innovation, Program: node
+ Hardware: PC with Windows NT 4x AMD64 Level 6 (Mod 58 Step 9), Operating_system: Windows NT 6.1, Kernel_release: 721 patchlevel 35
+ Hostname: PVGN50842073A, IP address: 192.168.245.1, IP address_v6: 192.168.245.1
+
+
+LOCATION    CPIC (TCP/IP) on local host PVGN50842073A with Unicode
+ERROR       program state check for conversation 62719399
+TIME        Thu Aug 20 17:05:01 2015
+RELEASE     721
+COMPONENT   CPIC (TCP/IP) with Unicode
+VERSION     3
+RC          471
+MODULE      r3cpic.c
+LINE        6078
+DETAIL      called function STSEND in state state=BUFFER_DATA2
+COUNTER     2
+

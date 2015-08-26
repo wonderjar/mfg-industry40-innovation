@@ -1,5 +1,9 @@
+var r = require('node-rfc');
+
 exports.create = function(req, res, next) {
-    //TODO create sale order
+    
+
+
     res.status(201)
         .json({
             id: 18,
