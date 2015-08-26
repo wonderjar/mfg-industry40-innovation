@@ -1,14 +1,4 @@
-count = 0;
-
-startcount = () ->
-  count = count + 4;
-  console.log( count + "%" );
-  if count < 99
-    setTimeout "startcount()",100;
-  else
-    window.location = "./order/order";
-
 if !localStorage['orderId']
-  startcount();
+  setTimeout (() -> window.location = "./order/order"), 2500
 else
   window.location = null;
