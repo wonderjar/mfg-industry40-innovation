@@ -9,22 +9,23 @@ html
         script(src='/lib/zepto/zepto.js')
         block head
     body
+        script(src = '#{order_js_src}')
         script(src='/javascripts/order/order.js')
         .image-panel
             img#car-img(src='/lib/car/audi_white.jpg')
             #car-name.car-name
-                span 奥迪R8 （白）
+                span= __('audi_car') + ' [' +__('white') + ']'
         .panel
             .car-type
-                .type-title 车型
+                .type-title= __('type')
                 .type-list
-                    each item,index in ['奥迪','宝马', '保时捷','福特','雪弗兰']
+                    each item,index in [__('audi'), __('bmw'), __('porsche'), __('ford'), __('chevrolet')]
                         button(id='type#{index}', class=['btn-primary','btn-unselected']) #{item}
                 hr
             .color
-                .color-title 颜色
+                .color-title= __('color')
                 .color-list
-                    each element,index in ['白色','橙色','黄色','黑色','红色','金色','银色']
+                    each element,index in [__('white'), __('orange'), __('yellow'), __('black'), __('red'), __('gloden'), __('silver')]
                         button(id='color#{index}', class=['color-primary','color#{index}'])
-            #submit(class=['btn-submit','btn-unavailable']) 下单
+            #submit(class=['btn-submit','btn-unavailable'])= __('submit')
 

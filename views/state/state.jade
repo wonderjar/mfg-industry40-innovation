@@ -12,11 +12,11 @@ body
     .car
       img(src="/images/car.jpg")
     #status1(class=['tag','tag_left','ready'])
-        .text 订单已提交
+        .text= __('state1')
     #status2(class=['tag','tag_right','ready'])
-        .text 订单已在ERP创建
+        .text= __('state2')
     #status3(class=['tag','tag_left','ready'])
-        .text 订单已下达到MES
+        .text= __('state3')
     .slides
         - for(var i = 1;i < 11;i++) {
             .slide
@@ -25,8 +25,8 @@ body
     .empty
     .line
     #status4(class=['tag','tag_right','ready'])
-        .text 订单生产完成
+        .text= __('state4')
     .complete
-        p 小车已装配完成
-        p 给它起个好听点的名字吧
+        p= __('end1')
+        p= __('end2')
 
