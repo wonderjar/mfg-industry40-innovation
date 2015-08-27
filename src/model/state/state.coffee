@@ -4,9 +4,22 @@ topStart = 35
 statusGap = 80
 isMovingStatus = false
 isMovingOpe = false
-order_id = localStorage['orderId']
 BaseUrl = 'http://p526.coil.sap.com:50004/MFGInno2/api/v1/orders'
 operation = 1
+
+getUrlParam = (name) ->
+	reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+	r = window.location.search.substr(1).match reg
+	if r isnt null
+		return unescape r[2]
+	return null
+
+orderIdInUrl = getUrlParam 'orderId'
+if(orderIdInUrl)
+	order_id = orderIdInUrl
+else
+	order_id = localStorage['orderId']
+
 
 $(document).ready ->
 	moveToStatus = (statusId) ->
