@@ -42,5 +42,5 @@
     "submit": "下单",
     "welcome": "立即体验工业4.0",
 
-    "order_js_src": "/javascripts/order_zh.js"
+    "order_js_src": "/javascripts/order/order_zh.js"
 }

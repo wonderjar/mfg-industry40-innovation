@@ -42,5 +42,5 @@
   	"submit": "Submit",
   	"welcome": "Now to Industry 4.0",
 
-  	"order_js_src": "/javascripts/order_en.js"
+  	"order_js_src": "/javascripts/order/order_en.js"
 }
