@@ -1,10 +1,12 @@
 curOpeId = 1
 curStatusId = 1
-topStart = 35
 statusGap = 80
 isMovingStatus = false
 isMovingOpe = false
 BaseUrl = 'http://p526.coil.sap.com:50004/MFGInno2/api/v1/orders'
+topStart = 125
+car_name = localStorage['carName']
+imgsrc = localStorage['img']
 operation = 1
 
 getUrlParam = (name) ->
@@ -97,7 +99,9 @@ $(document).ready ->
 				error: (xmlHttpRequest, textStatus, errorThrown) ->
 					console.log errorThrown
 			})
-
+	$('#carimg').attr 'src', imgsrc
+	$('#ctitle').text car_name
+	$('#num').text order_id
 	findOrder BaseUrl, order_id
 	setInterval (() -> findOrder BaseUrl, order_id), 2000
 

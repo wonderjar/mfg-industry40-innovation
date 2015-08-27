@@ -13,7 +13,7 @@ exports.find = function(req, res, next) {
     res.status(200)
         .json({
             id: orderId,
-            status: 3,
+            status: 4,
             operationId: 3
         });
 }

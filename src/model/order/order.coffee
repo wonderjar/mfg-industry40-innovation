@@ -116,6 +116,8 @@ $(document).ready ->
         if data.salesOrderID
           alert 'Order ' + data.salesOrderID + ' created'
           localStorage['orderId'] = data.salesOrderID
+          localStorage['img'] = connection[car_color][car_type]
+          localStorage['carName'] = car_name[car_color][car_type]
           window.location = '/order/state'
         else
           alert 'post is fail'
