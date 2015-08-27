@@ -4,15 +4,16 @@ topStart = 35
 statusGap = 50
 isMoving = false
 order_id = localStorage['orderId']
-BaseUrl = 'http://localhost:3000/api/v1/orders'
+BaseUrl = 'http://p526.coil.sap.com:50004/MFGInno2/api/v1/orders'
 order_status = -1
 operation = 1
+
 $(document).ready ->
 	moveToStatus = (statusId) ->
 		curTop = topStart + (curStatusId - 1) * statusGap
 		desTop = topStart + (statusId - 1) * statusGap
 		if(statusId >= 2)
-			desTop += 280
+			desTop += 230
 		speedPerSec = 60
 		timeInterval = 20
 		isMoving = true
@@ -27,9 +28,9 @@ $(document).ready ->
 				isMoving = false
 				clearInterval moveTimer
 				if(3 is curStatusId)
-					$('.car').css('animation', 'spin-a 1s linear')
+					$('.car').css('-webkit-animation', 'spin-a 1s linear')
 					setTimeout (() ->
-						$('.car').css('transform', 'rotate(-90deg)')
+						$('.car').css('-webkit-transform', 'rotate(-90deg)')
 					), 950
 		), timeInterval
 
@@ -48,23 +49,23 @@ $(document).ready ->
 				isMoving = false
 				clearInterval moveTimer
 				if(2 is curOpeId)
-					$('.car').css('animation', 'spin 1s linear')
+					$('.car').css('-webkit-animation', 'spin 1s linear')
 					setTimeout (() ->
-						$('.car').css('transform', 'rotate(0deg)')
+						$('.car').css('-webkit-transform', 'rotate(0deg)')
 					), 950
 		), timeInterval
 
-	findOrder = (BaseUrl, data) ->
+	findOrder = (BaseUrl, orderId) ->
 		if(!isMoving)
 			$.ajax({
-				url: BaseUrl + '/' + data,
+				url: BaseUrl + '/' + orderId,
 				type: "GET",
 				dataType: "json",
 				cache: false,
 				async: true,
 				crossDomain: true,
 				success: (data) ->
-					if data.id
+					if data.orderId
 						for i in [1..4]
 								if Number data.status > i
 									if $('#status' + i).hasClass 'ready'
@@ -85,7 +86,7 @@ $(document).ready ->
 			})
 
 	findOrder BaseUrl, order_id
-	setInterval (() -> findOrder BaseUrl, order_id), 2000
+	setInterval (() -> findOrder BaseUrl, 7385), 2000
 
 
 

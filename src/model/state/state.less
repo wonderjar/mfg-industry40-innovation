@@ -4,14 +4,14 @@
 @lr_margin: 12px;
 @top_start: 35px;
 
-@keyframes spin-a {
+@-webkit-keyframes spin-a {
   100% {
-    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
   }
 }
-@keyframes spin {
+@-webkit-keyframes spin {
   100% {
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
   }
 }
 
@@ -27,6 +27,15 @@ body{
   width: 50%;
   background-color: transparent;
   height: 280px;
+  border-right: 10px dashed black;
+  position: relative;
+  right: 5px;
+}
+
+.bottom-line {
+  width: 50%;
+  background-color: transparent;
+  height: 180px;
   border-right: 10px dashed black;
   position: relative;
   right: 5px;
@@ -69,7 +78,7 @@ body{
 }
 #status3{
   position: absolute;
-  top: @top_start + 120;
+  top: @top_start + 160;
   left: @lr_margin;
 }
 #status3::after{
@@ -79,7 +88,7 @@ body{
 }
 #status4{
   position: absolute;
-  top: 565px;
+  top: 465px;
   right: @lr_margin;
 }
 #status4::after{
@@ -112,7 +121,7 @@ body{
   position: relative;
   .slide{
     width: 10%;
-    height: 150px;
+    height: 100px;
     border-bottom: 15px dashed #000;
     display: inline-block;
     .details{
