@@ -1,0 +1,31 @@
+{
+	"state1": "order commited",
+	"state2": "ERP created an order",
+	"state3": "order comes to MES",
+	"state4": "order accomplished",
+	
+	"operation1": "Initialization RFID",
+	"operation2": "Supplying Chassis",
+	"operation3": "Supplying Mainbody",
+	"operation4": "Supplying windshield",
+	"operation5": "Scanning",
+	"operation6": "Polishing windshield",
+	"operation7": "Assembling windshield(robot)",
+	"operation8": "Quality Control",
+	"operation9": "Manual rework",
+	"operation10": "Robot picking",
+	
+	"audi": "Audi",
+	"bmw" : "BMW",
+	"porsche" : "Porsche",
+	"ford" : "Ford",
+	"chevrolet":"Chevrolet",
+	
+	"red":"Red",
+	"yellow":"Yellow",
+	"orange":"Orange",
+	"black":"Black",
+	"white":"White",
+	"golden":"Golden",
+	"silver":"Silver"
+}
