@@ -1,10 +1,12 @@
 curOpeId = 1
 curStatusId = 1
-topStart = 35
+topStart = 125
 statusGap = 50
 isMoving = false
 order_id = localStorage['orderId']
-BaseUrl = 'http://p526.coil.sap.com:50004/MFGInno2/api/v1/orders'
+car_name = localStorage['carName']
+imgsrc = localStorage['img']
+BaseUrl = 'http://localhost:3000/api/v1/orders'
 order_status = -1
 operation = 1
 
@@ -65,7 +67,7 @@ $(document).ready ->
 				async: true,
 				crossDomain: true,
 				success: (data) ->
-					if data.orderId
+					if data.id
 						for i in [1..4]
 								if Number data.status > i
 									if $('#status' + i).hasClass 'ready'
@@ -84,9 +86,11 @@ $(document).ready ->
 				error: (xmlHttpRequest, textStatus, errorThrown) ->
 					console.log errorThrown
 			})
-
+	$('#carimg').attr 'src', imgsrc
+	$('#ctitle').text car_name
+	$('#num').text order_id
 	findOrder BaseUrl, order_id
-	setInterval (() -> findOrder BaseUrl, 7385), 2000
+	setInterval (() -> findOrder BaseUrl, order_id), 2000
 
 
 

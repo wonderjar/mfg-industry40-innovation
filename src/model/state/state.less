@@ -2,7 +2,7 @@
 @import "../mixin";
 
 @lr_margin: 12px;
-@top_start: 35px;
+@top_start: 125px;
 
 @-webkit-keyframes spin-a {
   100% {
@@ -23,10 +23,37 @@ body{
   padding: 0;
   font-size: 13px;
 }
+.bar{
+  background-color: @darker_grey;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  z-index: 10;
+  .description{
+    margin: 0 auto;
+    padding: 15px 50px;
+    img{
+      width: 80px;
+    }
+    .car_title{
+      color: white;
+      position: absolute;
+      top: 15px;
+      right: 45px;
+    }
+    .order_number{
+      color: white;
+      position: absolute;
+      top: 40px;
+      right: 85px;
+    }
+  }
+}
 .line{
   width: 50%;
   background-color: transparent;
-  height: 280px;
+  height: 380px;
   border-right: 10px dashed black;
   position: relative;
   right: 5px;
@@ -88,7 +115,7 @@ body{
 }
 #status4{
   position: absolute;
-  top: 465px;
+  top: 660px;
   right: @lr_margin;
 }
 #status4::after{

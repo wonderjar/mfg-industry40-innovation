@@ -100,7 +100,7 @@ $(document).ready ->
           $('#'+obj.id).toggleClass 'color-selected'
           $('#submit').toggleClass 'btn-available btn-unavailable'
           car_color = -1
-  BaseUrl = 'http://localhost:3000/api/v1/orders'
+  BaseUrl = 'http://192.168.1.109:3000/api/v1/orders'
   PostOrder = (car_type, car_color) ->
     data = {car_type: Number(car_type)+1, car_color: Number(car_color)+1}
     $.ajax({
@@ -118,6 +118,8 @@ $(document).ready ->
         if data.id
           alert 'post successfully'
           localStorage['orderId'] = data.id
+          localStorage['img'] = connection[car_color][car_type]
+          localStorage['carName'] = car_name[car_color][car_type]
         else
           alert 'post is fail',
       error: (xmlHttpRequest, textStatus, errorThrown) ->
