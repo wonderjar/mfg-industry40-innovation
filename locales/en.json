@@ -15,11 +15,11 @@
 	"operation9": "Manual rework",
 	"operation10": "Robot picking",
 	
-	"audi": "Audi",
-	"bmw" : "BMW",
-	"porsche" : "Porsche",
-	"ford" : "Ford",
-	"chevrolet":"Chevrolet",
+	"audi": "Audi R8",
+	"bmw" : "BMW 335i",
+	"porsche" : "Porsche Panamera",
+	"ford" : "Ford Mustang",
+	"chevrolet":"Chevrolet Camaro",
 	
 	"red":"Red",
 	"yellow":"Yellow",
