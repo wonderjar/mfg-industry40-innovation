@@ -3,6 +3,9 @@
 	"state2": "ERP created an order",
 	"state3": "order comes to MES",
 	"state4": "order accomplished",
+
+  	"end1": "Assembly completed.",
+  	"end2": "Would you like to name it?",
 	
 	"operation1": "Initialization RFID",
 	"operation2": "Supplying Chassis",
@@ -14,18 +17,30 @@
 	"operation8": "Quality Control",
 	"operation9": "Manual rework",
 	"operation10": "Robot picking",
-	
-	"audi": "Audi R8",
-	"bmw" : "BMW 335i",
-	"porsche" : "Porsche Panamera",
-	"ford" : "Ford Mustang",
-	"chevrolet":"Chevrolet Camaro",
-	
+  "type": "Type",
+	"audi": "Audi",
+	"bmw" : "BMW",
+	"porsche" : "Porsche",
+	"ford" : "Ford",
+	"chevrolet":"Chevrolet",
+
+  	"audi_car": "Audi R8",
+	"bmw_car" : "BMW 335i",
+	"porsche_car" : "Porsche Panamera",
+	"ford_car" : "Ford Mustang",
+	"chevrolet_car":"Chevrolet Camaro",
+
+  	"color": "Color",
 	"red":"Red",
 	"yellow":"Yellow",
 	"orange":"Orange",
 	"black":"Black",
 	"white":"White",
 	"golden":"Golden",
-	"silver":"Silver"
+	"silver":"Silver",
+
+  	"submit": "Submit",
+  	"welcome": "Now to Industry 4.0",
+
+  	"order_js_src": "/javascripts/order_en.js"
 }
