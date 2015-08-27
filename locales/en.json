@@ -4,7 +4,7 @@
 	"state3": "order comes to MES",
 	"state4": "order accomplished",
 
-  	"end1": "Assembly completed.",
+  	"end1": "Production completed.",
   	"end2": "Would you like to name it?",
 	
 	"operation1": "Initialization RFID",
@@ -13,7 +13,7 @@
 	"operation4": "Supplying windshield",
 	"operation5": "Scanning",
 	"operation6": "Polishing windshield",
-	"operation7": "Assembling windshield(robot)",
+	"operation7": "Assembling windshield",
 	"operation8": "Quality Control",
 	"operation9": "Manual rework",
 	"operation10": "Robot picking",

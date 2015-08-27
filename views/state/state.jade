@@ -3,6 +3,7 @@ html
     head
         meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
         meta(charset='utf-8')
+        title= 'Check Status'
         link(rel='stylesheet', href='/stylesheets/state/state.css')
         link(rel='stylesheet', href='/lib/styles/style.css')
         script(src='/lib/zepto/zepto.js')
@@ -23,7 +24,7 @@ body
                 .details= __('operation' + i)
         - }
     .bottom-line
-    #status4(class=['tag','tag_right','ready'])
+    #status5(class=['tag','tag_right','ready'])
         .text= __('state4')
     .complete
         p= __('end1')

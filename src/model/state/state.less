@@ -11,11 +11,12 @@
 }
 @-webkit-keyframes spin {
   100% {
-    -webkit-transform: rotate(90deg);
+    -webkit-transform: rotate(0deg);
   }
 }
 
 body{
+  font-family: 'Helvetica Neue';
   width: 100%;
   overflow: hidden;
   background: @light_grey;
@@ -86,12 +87,12 @@ body{
   .add_right;
   border-color: transparent transparent transparent @darker_grey;
 }
-#status4{
+#status5{
   position: absolute;
   top: 465px;
   right: @lr_margin;
 }
-#status4::after{
+#status5::after{
   content: "";
   .add_left;
   border-color: transparent @darker_grey transparent transparent;
@@ -122,7 +123,7 @@ body{
   .slide{
     width: 10%;
     height: 100px;
-    border-bottom: 15px dashed #000;
+    border-bottom: 10px dashed #000;
     display: inline-block;
     .details{
       margin:20px 0 0 20px;
@@ -131,7 +132,7 @@ body{
       border: 3px @darker_grey solid;
       border-radius: 4px;
       text-align: center;
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 600;
       color: @darker_grey;
     }
@@ -149,4 +150,8 @@ body{
   background: @darker_grey;
   border-radius: 10px;
   border-color: @light_grey;
+}
+
+.active {
+  color: @theme_col;
 }
