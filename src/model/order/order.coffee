@@ -19,11 +19,8 @@ $(document).ready ->
       return
     PostOrder(car_type, car_color)
 
-  hasClass = (obj, cls) ->
-    obj.className.match new RegExp '(\\s|^)' + cls + '(\\s|$)'
-
   selCar = (obj,fun,index) ->
-    if (hasClass obj, 'btn-disabled') or (hasClass obj, 'color-disabled')
+    if ($('#' + obj.id).hasClass 'btn-disabled') or ($('#' + obj.id).hasClass 'color-disabled')
       return
     if fun is 0
       for i in [0..6]
@@ -47,7 +44,7 @@ $(document).ready ->
           if $('#submit').hasClass 'btn-unavailable'
             $('#submit').toggleClass 'btn-unavailable btn-available'
       else
-        if hasClass obj, 'btn-unselected'
+        if $('#' + obj.id).hasClass 'btn-unselected'
           obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
           for i in [0..6]
             if connection[i][index] is 0
@@ -86,7 +83,7 @@ $(document).ready ->
           if $('#submit').hasClass 'btn-unavailable'
             $('#submit').toggleClass 'btn-unavailable btn-available'
       else
-        if !(hasClass obj, 'color-disabled')
+        if !($('#' + obj.id).hasClass 'color-selected')
           $('#'+obj.id).toggleClass 'color-selected'
           for i in [0..4]
             if connection[index][i] is 0
@@ -105,7 +102,7 @@ $(document).ready ->
           car_color = -1
   BaseUrl = 'http://localhost:3000/api/v1/orders'
   PostOrder = (car_type, car_color) ->
-    data = {car_type: car_type, car_color: car_color}
+    data = {car_type: Number(car_type)+1, car_color: Number(car_color)+1}
     $.ajax({
       url: BaseUrl,
       type: "POST",
