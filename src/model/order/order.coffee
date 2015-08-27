@@ -23,12 +23,12 @@ $(document).ready ->
     obj.className.match new RegExp '(\\s|^)' + cls + '(\\s|$)'
 
   selCar = (obj,fun,index) ->
-    if hasClass obj, 'btn-disabled'
+    if (hasClass obj, 'btn-disabled') or (hasClass obj, 'color-disabled')
       return
     if fun is 0
       for i in [0..6]
-        if $('#color'+i).hasClass 'btn-disabled'
-          $('#color'+i).toggleClass 'btn-disabled btn-unselected'
+        if $('#color'+i).hasClass 'color-disabled'
+          $('#color'+i).toggleClass 'color-disabled'
       if obj.id isnt lastType
         obj.className = obj.className.replace 'btn-unselected','btn-selected'
         if $('#'+lastType)&&$('#'+lastType).hasClass 'btn-selected'
@@ -36,10 +36,10 @@ $(document).ready ->
         lastType = obj.id
         for i in [0..6]
           if connection[i][index] is 0
-            if $('#color'+i).hasClass 'btn-selected'
-              $('#color'+i).toggleClass 'btn-selected btn-disabled'
+            if $('#color'+i).hasClass 'color-selected'
+              $('#color'+i).toggleClass 'color-selected color-disabled'
             else
-              $('#color'+i).toggleClass 'btn-unselected btn-disabled'
+              $('#color'+i).toggleClass 'color-disabled'
         car_type = index
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
@@ -51,10 +51,10 @@ $(document).ready ->
           obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
           for i in [0..6]
             if connection[i][index] is 0
-              if $('#color'+i).hasClass 'btn-selected'
-                $('#color'+i).toggleClass 'btn-selected btn-disabled'
+              if $('#color'+i).hasClass 'color-selected'
+                $('#color'+i).toggleClass 'color-selected color-disabled'
               else
-                $('#color'+i).toggleClass 'btn-unselected btn-disabled'
+                $('#color'+i).toggleClass 'color-disabled'
           car_type = index
           if car_color isnt -1
             $('#car-img').attr 'src', [car_color][car_type]
@@ -69,9 +69,9 @@ $(document).ready ->
         if $('#type'+i).hasClass 'btn-disabled'
           $('#type'+i).toggleClass 'btn-disabled btn-unselected'
       if obj.id isnt lastColor
-        obj.className = obj.className.replace 'btn-unselected','btn-selected'
-        if $('#'+lastColor)&&$('#'+lastColor).hasClass 'btn-selected'
-          $('#'+lastColor).toggleClass 'btn-selected btn-unselected'
+        $('#'+obj.id).toggleClass 'color-selected'
+        if $('#'+lastColor)&&$('#'+lastColor).hasClass 'color-selected'
+          $('#'+lastColor).toggleClass 'color-selected'
         lastColor = obj.id
         for i in [0..4]
           if connection[index][i] is 0
@@ -86,8 +86,8 @@ $(document).ready ->
           if $('#submit').hasClass 'btn-unavailable'
             $('#submit').toggleClass 'btn-unavailable btn-available'
       else
-        if hasClass obj, 'btn-unselected'
-          obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
+        if !(hasClass obj, 'color-disabled')
+          $('#'+obj.id).toggleClass 'color-selected'
           for i in [0..4]
             if connection[index][i] is 0
               if $('#type'+i).hasClass 'btn-selected'
@@ -100,7 +100,7 @@ $(document).ready ->
             $('#car-name > span').text car_name[car_color][car_type]
             $('#submit').toggleClass 'btn-unavailable btn-available'
         else
-          obj.className = obj.className.replace 'btn-selected', 'btn-unselected'
+          $('#'+obj.id).toggleClass 'color-selected'
           $('#submit').toggleClass 'btn-available btn-unavailable'
           car_color = -1
   BaseUrl = 'http://localhost:3000/api/v1/orders'
