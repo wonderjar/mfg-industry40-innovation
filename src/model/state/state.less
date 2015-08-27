@@ -1,5 +1,22 @@
 @import "../variable";
 @import "../mixin";
+
+@lr_margin: 12px;
+@top_start: 35px;
+
+@keyframes spin-a {
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+
+@keyframes spin {
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
 body{
   background: @light_grey;
   margin: 0;
@@ -9,9 +26,12 @@ body{
 .line{
   width: 50%;
   background-color: transparent;
-  border-right: 15px dashed black;
   height: 280px;
+  border-right: 10px dashed black;
+  position: relative;
+  right: 5px;
 }
+
 .tag{
   width: 100px;
   height: 50px;
@@ -69,6 +89,18 @@ body{
 }
 .ready{
   color: white;
+}
+
+.car {
+  position: absolute;
+  left: 50%;
+  top: @top_start;
+  margin: 0 0 0 -20px;
+  z-index: 1;
+  img {
+    width: 40px;
+    height: 80px;
+  }
 }
 .slides {
   width: 1000%;
