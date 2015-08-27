@@ -28,7 +28,7 @@ $(document).ready ->
 		curTop = topStart + (curStatusId - 1) * statusGap
 		desTop = topStart + (statusId - 1) * statusGap
 		if(statusId > 3)
-			desTop += 68
+			desTop += 50
 		speedPerSec = 60
 		timeInterval = 20
 		isMovingStatus = true
