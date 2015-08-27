@@ -16,6 +16,8 @@ $(document).ready ->
 		speedPerSec = 60
 		timeInterval = 20
 		isMoving = true
+		if(statusId is 4)
+			desTop += 180
 		moveTimer = setInterval (() ->
 			curTop += (speedPerSec / 1000) * timeInterval
 			$('.car').css('top', curTop + 'px')
@@ -53,30 +55,36 @@ $(document).ready ->
 		), timeInterval
 
 	findOrder = (BaseUrl, data) ->
-		$.ajax({
-			url: BaseUrl + '/' + order_id,
-			type: "GET",
-			dataType: "json",
-			cache: false,
-			async: true,
-			crossDomain: true,
-			success: (data) ->
-				if data.id
-					console.log data.status
-					if data.status isnt order_status
-						moveToStatus data.status
-					if data.status is 3
-						if data.operationId isnt operation
-							moveToOperation data.operationId
-					order_status = data.status
-				else
-					alert 'post is fail',
-			error: (xmlHttpRequest, textStatus, errorThrown) ->
-				alert errorThrown
-				if (xmlHttpRequest.readyState is 0) or (xmlHttpRequest.status is 0)
-					alert 'Request is fail'
-		})
+		if(!isMoving)
+			$.ajax({
+				url: BaseUrl + '/' + data,
+				type: "GET",
+				dataType: "json",
+				cache: false,
+				async: true,
+				crossDomain: true,
+				success: (data) ->
+					if data.id
+						for i in [1..4]
+								if Number data.status > i
+									if $('#status' + i).hasClass 'ready'
+										$('#status' + i).toggleClass 'ready completed'
+									if $('#status' + i).hasClass 'onProcess'
+										$('#status' + i).toggleClass 'onProcess completed'
+								else
+									if $('#status' + i).hasClass 'ready'
+										$('#status' + i).toggleClass 'ready onProcess'
+									break
+						if data.status isnt order_status
+							moveToStatus data.status
+							order_status = data.status
+							if data.status is 3
+								setTimeout (()-> moveToOperation data.operationId), 8000
+				error: (xmlHttpRequest, textStatus, errorThrown) ->
+					console.log errorThrown
+			})
 
+	findOrder BaseUrl, order_id
 	setInterval (() -> findOrder BaseUrl, order_id), 2000
 
 
