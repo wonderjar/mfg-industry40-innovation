@@ -16,16 +16,16 @@
 	"operation10": "机器分拣",
 	
 	"audi": "奥迪",
-	"bmw" : "宝马",
-	"porsche" : "保时捷",
-	"ford" : "福特",
-	"chevrolet":"雪佛兰",
+	"bmw": "宝马",
+	"porsche": "保时捷",
+	"ford": "福特",
+	"chevrolet": "雪佛兰",
 	
-	"red":"红色",
-	"yellow":"黄色",
-	"orange":"橙色",
-	"black":"黑色",
-	"white":"白色",
-	"golden":"金色",
-	"silver":"银色"
+	"red": "红色",
+	"yellow": "黄色",
+	"orange": "橙色",
+	"black": "黑色",
+	"white": "白色",
+	"golden": "金色",
+	"silver": "银色"
 }
