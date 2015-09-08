@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var order = require('./controller/order');
+var order = require('./controllers/order');
 
 router.get('/order/order_new', order.new);
 router.get('/order/order_show', order.show);
