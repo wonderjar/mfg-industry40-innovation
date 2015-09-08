@@ -1,10 +1,29 @@
+
+var Order = require('../../models/order.js');
+
 exports.create = function(req, res, next) {
-    //TODO create sale order
-    res.status(201)
-        .json({
-            id: 18,
-            status: 1
-        });
+
+    var order = new Order({
+        orderId: 18,
+        type: 3,
+        color: 6
+    });
+
+    //TODO maybe call service layer
+    order.save(function(err) {
+        if(err) {
+            res.status(500)
+                .json({
+                    message: err
+                });
+        }
+        else {
+            res.status(201)
+                .json({
+                    orderId: 18
+                });
+        }
+    });
 }
 
 exports.find = function(req, res, next) {
