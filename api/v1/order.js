@@ -1,7 +1,10 @@
 
+var mongoose = require('mongoose');
 var Order = require('../../models/order.js');
 
 exports.create = function(req, res, next) {
+
+    mongoose.connect('mongodb://localhost/innovation');
 
     var order = new Order({
         orderId: 18,

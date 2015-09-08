@@ -10,10 +10,6 @@ var i18nDebug = require('debug')('i18n');
 var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
 
-var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/innovation');
-
 var app = express();
 
 var acceptLanguage = ['zh','en'];
