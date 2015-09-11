@@ -8,7 +8,7 @@ router.get('/order/order_show', order.show);
 router.get('/order/order', order.select);
 router.get('/order/state', order.state);
 
-router.get('/analyse',analyse.display);
+router.get('/analyse/display',analyse.display);
 
 router.get('/', function(req, res, next) {
     res.render('index');
