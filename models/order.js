@@ -6,15 +6,28 @@ var Order = new Schema({
     type: Number,
     require: true
   },
-  type: {
-    type: Number,
-    require: true
+  createTime: {
+	  type: String,
+	  require: true
   },
-  color: {
-    type: Number,
-    require: true
+  priority: {
+	  type: Number,
+	  require: true
   },
-  //TODO user
+  userId: {
+	  type: String,
+	  require: true
+  },
+  car: {
+	  type: {
+		  type: Number,
+		  require: true
+	  },
+	  color: {
+		  type: Number,
+		  require: true
+	  }
+  }
 });
 
 module.exports = mongoose.model('Order', Order);
