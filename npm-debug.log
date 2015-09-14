@@ -1,45 +1,37 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   '--save-dev',
-1 verbose cli   'browser-sync' ]
-2 info using npm@1.4.3
-3 info using node@v0.10.26
-4 verbose node symlink C:\Program Files\nodejs\\node.exe
-5 verbose readDependencies using package.json deps
-6 verbose cache add [ 'browser-sync', null ]
-7 verbose cache add name=undefined spec="browser-sync" args=["browser-sync",null]
-8 verbose parsed url { protocol: null,
-8 verbose parsed url   slashes: null,
-8 verbose parsed url   auth: null,
-8 verbose parsed url   host: null,
-8 verbose parsed url   port: null,
-8 verbose parsed url   hostname: null,
-8 verbose parsed url   hash: null,
-8 verbose parsed url   search: null,
-8 verbose parsed url   query: null,
-8 verbose parsed url   pathname: 'browser-sync',
-8 verbose parsed url   path: 'browser-sync',
-8 verbose parsed url   href: 'browser-sync' }
-9 silly lockFile 6d7be3df-browser-sync browser-sync
-10 verbose lock browser-sync C:\Program Files\nodejs\node_cache\6d7be3df-browser-sync.lock
-11 silly lockFile 6d7be3df-browser-sync browser-sync
-12 error Error: Attempt to unlock browser-sync, which hasn't been locked
-12 error     at unlock (C:\Program Files\nodejs\node_modules\npm\lib\cache.js:1304:11)
-12 error     at cb (C:\Program Files\nodejs\node_modules\npm\lib\cache.js:866:5)
-12 error     at C:\Program Files\nodejs\node_modules\npm\lib\cache.js:883:20
-12 error     at C:\Program Files\nodejs\node_modules\npm\lib\cache.js:1290:7
-12 error     at C:\Program Files\nodejs\node_modules\npm\node_modules\lockfile\lockfile.js:167:38
-12 error     at OpenReq.Req.done (C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:144:5)
-12 error     at OpenReq.done (C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:64:22)
-12 error     at Object.oncomplete (fs.js:107:15)
-13 error If you need help, you may report this *entire* log,
-13 error including the npm and node versions, at:
-13 error     <http://github.com/npm/npm/issues>
-14 error System Windows_NT 6.2.9200
-15 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save-dev" "browser-sync"
-16 error cwd C:\Users\I309892\SIA
-17 error node -v v0.10.26
-18 error npm -v 1.4.3
+1 verbose cli   'start' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart sap-mfg-industry40-innovation@0.0.0
+6 info start sap-mfg-industry40-innovation@0.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info sap-mfg-industry40-innovation@0.0.0 Failed to exec start script
+9 verbose stack Error: sap-mfg-industry40-innovation@0.0.0 start: `node ./bin/www`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:213:16)
+9 verbose stack     at EventEmitter.emit (events.js:110:17)
+9 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
+9 verbose stack     at ChildProcess.emit (events.js:110:17)
+9 verbose stack     at maybeClose (child_process.js:1015:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+10 verbose pkgid sap-mfg-industry40-innovation@0.0.0
+11 verbose cwd C:\Users\I309908\Desktop\siqi\wechat
+12 error Windows_NT 6.1.7601
+13 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+14 error node v0.12.7
+15 error npm  v2.11.3
+16 error code ELIFECYCLE
+17 error sap-mfg-industry40-innovation@0.0.0 start: `node ./bin/www`
+17 error Exit status 1
+18 error Failed at the sap-mfg-industry40-innovation@0.0.0 start script 'node ./bin/www'.
+18 error This is most likely a problem with the sap-mfg-industry40-innovation package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     node ./bin/www
+18 error You can get their info via:
+18 error     npm owner ls sap-mfg-industry40-innovation
+18 error There is likely additional logging output above.
 19 verbose exit [ 1, true ]
