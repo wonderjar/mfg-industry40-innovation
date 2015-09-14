@@ -2,12 +2,8 @@ var Q = require('q');
 var mongoose = require('mongoose');
 var Order = require('../../models/order.js');
 var User = require('../../models/user.js');
-var resultJson = {
-		male:  	{},
-		female:	{}
-};
-var maleArray,femaleArray;
 
+//获取当前所有用户的性别分组
 function getGenderArray(){
 	console.log("start user aggregate");
 	var promise = User.aggregate(
@@ -26,79 +22,56 @@ function getGenderArray(){
 	return promise;
 }	
 	
-function getMaleTypeResult(){
+//对所有userId在array中的用户订单，根据车辆类别进行聚合
+function getTypeResult(array){
 	console.log("start male type");
 	return Order.aggregate(
-				{$match: {userId:{$in:maleArray}}},
+				{$match: {userId:{$in:array}}},
 				{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}},
 				function(err,result){
 					if(err){
 						console.error(err);
 					}
-					
-					//console.log(result);
-					resultJson.male.type = result;
 					console.log("maleType finished");
 				}
 	);
 }
 
-function getMaleColorResult(){
+//对所有userId在array中的用户订单，根据车辆颜色进行聚合
+function getColorResult(array){
 	console.log("start male color");
 	var promise = Order.aggregate(
-				[{$match: {userId:{$in:maleArray}}},
+				[{$match: {userId:{$in:array}}},
 				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}],
 				function(err,result){
 					if(err){
 						console.error(err);
 					}
-					
-					//console.log(result);
-					resultJson.male.color = result;
 					console.log("maleColor finished");
 				}
 	);
 	return promise;
 }
 
-function getFemaleTypeResult(){
-	console.log("start female type");
-	return Order.aggregate(
-				{$match: {userId:{$in:femaleArray}}},
-				{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}},
-				function(err,result){
-					if(err){
-						console.error(err);
-					}
-					
-					//console.log(result);
-					resultJson.female.type = result;
-					console.log("femaleType finished");
-				}
-	);
-}
-
-function getFemaleColorResult(){
-	console.log("start female color");
-	return Order.aggregate(
-				{$match: {userId:{$in:femaleArray}}},
-				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}},
-				function(err,result){
-					if(err){
-						console.error(err);
-					}
-					
-					//console.log(result);
-					resultJson.female.color = result;
-					console.log("femaleColor finished");
-				}
-	);
-}
-
+/*
+ * 根据用户性别对订单进行分类，返回的json格式为
+ * {
+ *	 male: {
+ *		 color: [{_id:1, type:1, count:1}, ...],
+ *		 type : [{_id:1, type:1, count:1}, ...]
+ *	 },
+ *	 female:{
+ *		 color: [{_id:1, type:1, count:1}, ...],
+ *		 type : [{_id:1, type:1, count:1}, ...]
+ *	 }
+ * }
+ */
 exports.all = function(req,res,next){
 	
 	getGenderArray().then(
 		function(result){
+			var maleArray,femaleArray;
+			
 			if(1 == result[0]._id){
 				maleArray = result[0].IdArray;
 				femaleArray = result[1].IdArray;
@@ -107,23 +80,36 @@ exports.all = function(req,res,next){
 				femaleArray = result[0].IdArray;
 			}
 			Q.all(
-				[getMaleColorResult(maleArray),getMaleTypeResult(maleArray),getFemaleTypeResult(femaleArray),getFemaleColorResult(femaleArray)]
+				[getColorResult(maleArray),getTypeResult(maleArray),getColorResult(femaleArray),getTypeResult(femaleArray)]
 			).done(
 				function(values){
 					if(values.length==4){
-						res.status(200).render('analyse/display');
+						var resultJson = {
+							male:  	{
+								color: values[0],
+								type:  values[1]
+							},
+							female:	{
+								color: values[2],
+								type: values[3]
+							}
+						};
+						res.status(200).json(resultJson);
 					}
 				},
 				function(err){
 					res.status(500).json({
 						message: err
-					})
+					});
 				}
 			);
 		},
 		function(err){
 			if(err){
-				console.error("1 "+err);
+				console.error(err);
+				res.status(500).json({
+						message: err
+					});
 			}
 		}
 	); 
