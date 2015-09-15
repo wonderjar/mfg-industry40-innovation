@@ -9,8 +9,8 @@ var i18nDebug = require('debug')('i18n');
 
 var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
-var wechatRouter = require('./wechat_router');
-var wechat = require('wechat');
+
+var wechatHandler = require('./wechat/handler.js');
 
 var app = express();
 
@@ -53,30 +53,9 @@ app.use(function(req,res,next){
 
 app.use('/inno', webRouter);
 app.use('/api/v1', apiRouter);
-
-app.use('/',wechat('wechat_token',function(req, res, next){
-  var message = req.weixin;
-  console.log('message is '+message);
-  if((message.MsgType == 'event') && (message.Event == 'subscribe'))
-  {
-    var refillStr = "1. 点击记录团队充值"
-
-    var consumeStr = "2. 点击记录团队消费"
-    var deleteStr = "3. 点击回退记录"
-    var historyStr = "4. 点击查询历史记录"
-
-    var emptyStr = "          ";
-    var replyStr = "感谢你的关注！" + "\n"+ emptyStr + "\n" + refillStr + "\n"+ emptyStr + "\n" + consumeStr
-        + "\n"+ emptyStr + "\n" + deleteStr + "\n"+ emptyStr + "\n" + historyStr;
-    res.reply(replyStr);
-  }
-}));
-
-
+app.use('/', wechatHandler);
 
 app.use(express.query());
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
