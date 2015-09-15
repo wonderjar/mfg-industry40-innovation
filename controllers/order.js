@@ -15,3 +15,7 @@ exports.select = function(req, res, next) {
 exports.state = function(req, res, next) {
   res.render('state/state', {});
 };
+
+exports.test = function(req, res, next) {
+	res.sendFile(__dirname + '/../public/test.html');
+}
