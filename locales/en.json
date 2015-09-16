@@ -42,5 +42,10 @@
   	"submit": "Submit",
   	"welcome": "Now to Industry 4.0",
 
-  	"order_js_src": "/javascripts/order/order_en.js"
+	"overview": "Overview",
+	"male": "Male",
+	"female": "Female",
+
+  	"order_js_src": "/javascripts/order/order_en.js",
+  	"display_js_src": "/javascripts/analyse/display_en.js"
 }
