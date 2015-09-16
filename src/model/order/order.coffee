@@ -1,23 +1,32 @@
 connection = [['/lib/car/audi_white.jpg','/lib/car/bwm_white.jpg',0,'/lib/car/ford_white.jpg',0],[0,0,0,'/lib/car/ford_orange.jpg',0],[0,0,0,0,'/lib/car/chevrolet_yellow.jpg'],['/lib/car/audi_black.jpg',0,'/lib/car/porsche_black.jpg',0,0],['/lib/car/audi_red.jpg','/lib/car/bwm_red.jpg','/lib/car/porsche_red.jpg',0,'/lib/car/chevrolet_red.jpg'],[0,'/lib/car/bwm_gold.jpg',0,0,0],[0,0,'/lib/car/porsche_silvery.jpg','/lib/car/ford_silvery.jpg',0]]
 #car_name = [['奥迪R8 （白）','宝马335i （白）',0,'福特野马 （白）',0],[0,0,0,'福特野马 （橙）',0],[0,0,0,0,'雪弗兰科迈罗 （黄）'],['奥迪R8 （黑）',0,'保时捷Panamera （黑）',0,0],['奥迪R8 （红）','宝马335i （红）','保时捷Panamera （红）',0,'雪弗兰科迈罗 （红）'],[0,'宝马335i （金）',0,0,0],[0,0,'保时捷Panamera （银）','福特野马 （银）',0]]
 #car_title = '奥迪R8 （白）'
+price_group = ['1830,000','300,000','1200,000','500,000','470,000']
+urgent_price = ['1860,000','330,000','1230,000','530,000','500,000']
 btn_unselected = 'btn-primary btn-unselected'
 btn_selected = 'btn-primary btn-selected'
 btn_disabled = 'btn-primary btn-disabled'
 lastType = 'type100'
 lastColor = 'color100'
+lastPriority = 0
+price = '1830,000'
 car_type = -1
 car_color = -1
 car_image = "car/audi_white.jpg"
 $(document).ready ->
+  $('#price').html('￥'+price);
+  $('#priority0').toggleClass 'btn-unselected btn-selected'
   $('button').click ->
-    fun = if this.id.indexOf('type') is -1 then 1 else 0
-    num = if fun is 0 then this.id.substring this.id.indexOf('type') + 4,this.id.indexOf('type') + 5 else this.id.substring this.id.indexOf('color') + 5, this.id.indexOf('color') + 6
-    selCar this, fun, num
+    if this.id.indexOf('priority') isnt -1
+      selPri(this.id.substring this.id.indexOf('priority') + 8,this.id.indexOf('priority') + 9)
+    else
+      fun = if this.id.indexOf('type') is -1 then 1 else 0
+      num = if fun is 0 then this.id.substring this.id.indexOf('type') + 4,this.id.indexOf('type') + 5 else this.id.substring this.id.indexOf('color') + 5, this.id.indexOf('color') + 6
+      selCar this, fun, num
   $('#submit').click ->
     if $('#submit').hasClass('btn-unavailable')
       return
-    PostOrder(car_type, car_color)
+    PostOrder(car_type, car_color,priority)
 
   selCar = (obj,fun,index) ->
     if ($('#' + obj.id).hasClass 'btn-disabled') or ($('#' + obj.id).hasClass 'color-disabled')
@@ -38,11 +47,21 @@ $(document).ready ->
             else
               $('#color'+i).toggleClass 'color-disabled'
         car_type = index
+        if lastPriority is '0'
+          $('#price').html('￥'+price_group[car_type])
+        else
+          $('#price').html('￥'+urgent_price[car_type])
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
-          $('#car-name > span').text car_name[car_color][car_type]
+          $('#carName').text car_name[car_color][car_type]
           if $('#submit').hasClass 'btn-unavailable'
             $('#submit').toggleClass 'btn-unavailable btn-available'
+        else
+          for p in [0..3]
+            if connection[p][car_type] isnt 0
+              $('#car-img').attr 'src', connection[p][car_type]
+              $('#carName').text car_name[p][car_type]
+              break
       else
         if $('#' + obj.id).hasClass 'btn-unselected'
           obj.className = obj.className.replace 'btn-unselected', 'btn-selected'
@@ -53,14 +72,37 @@ $(document).ready ->
               else
                 $('#color'+i).toggleClass 'color-disabled'
           car_type = index
+          if lastPriority is '0'
+            $('#price').html('￥'+price_group[car_type])
+          else
+            $('#price').html('￥'+urgent_price[car_type])
           if car_color isnt -1
-            $('#car-img').attr 'src', [car_color][car_type]
-            $('#car-name > span').text car_name[car_color][car_type]
+            $('#car-img').attr 'src', connection[car_color][car_type]
+            $('#carName').text car_name[car_color][car_type]
             $('#submit').toggleClass 'btn-unavailable btn-available'
+          else
+            for p in [0..3]
+              if connection[p][car_type] isnt 0
+                $('#car-img').attr 'src', connection[p][car_type]
+                $('#carName').text car_name[p][car_type]
+                break
         else
           obj.className = obj.className.replace 'btn-selected', 'btn-unselected'
           $('#submit').toggleClass 'btn-available btn-unavailable'
           car_type = -1
+          if car_color isnt -1
+            for u in [0..4]
+              if connection[car_color][u] isnt 0
+                $('#car-img').attr 'src', connection[car_color][u]
+                $('#carName').text car_name[car_color][u]
+                break
+          else
+            $('#car-img').attr 'src', connection[0][0]
+            $('#carName').text car_name[0][0]
+          if lastPriority is '0'
+            $('#price').html('￥'+price_group[0])
+          else
+            $('#price').html('￥'+urgent_price[0])
     else
       for i in [0..4]
         if $('#type'+i).hasClass 'btn-disabled'
@@ -79,9 +121,15 @@ $(document).ready ->
         car_color = index;
         if car_type isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
-          $('#car-name > span').text car_name[car_color][car_type]
+          $('#carName').text car_name[car_color][car_type]
           if $('#submit').hasClass 'btn-unavailable'
             $('#submit').toggleClass 'btn-unavailable btn-available'
+        else
+          for u in [0..4]
+            if connection[car_color][u] isnt 0
+              $('#car-img').attr 'src', connection[car_color][u]
+              $('#carName').text car_name[car_color][u]
+              break
       else
         if !($('#' + obj.id).hasClass 'color-selected')
           $('#'+obj.id).toggleClass 'color-selected'
@@ -94,15 +142,55 @@ $(document).ready ->
           car_color = index
           if car_type isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
-            $('#car-name > span').text car_name[car_color][car_type]
+            $('#carName').text car_name[car_color][car_type]
             $('#submit').toggleClass 'btn-unavailable btn-available'
+          else
+            for u in [0..4]
+              if connection[car_color][u] isnt 0
+                $('#car-img').attr 'src', connection[car_color][u]
+                $('#carName').text car_name[car_color][u]
+                break
         else
           $('#'+obj.id).toggleClass 'color-selected'
           $('#submit').toggleClass 'btn-available btn-unavailable'
           car_color = -1
+          if car_type isnt -1
+            for p in [0..3]
+              if connection[p][car_type] isnt 0
+                $('#car-img').attr 'src', connection[p][car_type]
+                $('#carName').text car_name[p][car_type]
+                break
+          else
+            $('#car-img').attr 'src', connection[0][0]
+            $('#carName').text car_name[0][0]
+            if lastPriority is '0'
+              $('#price').html('￥'+price_group[0])
+            else
+              $('#price').html('￥'+urgent_price[0])
+
+  selPri = (index) ->
+    if index is '0'
+      if lastPriority is 0
+        return
+      else
+        $('#priority0').toggleClass 'btn-unselected btn-selected'
+        $('#priority1').toggleClass 'btn-unselected btn-selected'
+        if car_type isnt -1
+          $('#price').html('￥'+price_group[car_type]);
+        lastPriority = 0
+    else
+      if lastPriority is 1
+        return
+      else
+        $('#priority0').toggleClass 'btn-unselected btn-selected'
+        $('#priority1').toggleClass 'btn-unselected btn-selected'
+        if car_type isnt -1
+          $('#price').html('￥'+urgent_price[car_type])
+        lastPriority = 1
+
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
-  PostOrder = (car_type, car_color) ->
-    data = {type: Number(car_type)+1, color: Number(car_color)+1}
+  PostOrder = (car_type, car_color,priority) ->
+    data = {type: Number(car_type)+1, color: Number(car_color)+1, priority: Number(lastPriority)+1}
     $.ajax({
       url: BaseUrl,
       type: "POST",
@@ -126,3 +214,4 @@ $(document).ready ->
         if (xmlHttpRequest.readyState is 0) or (xmlHttpRequest.status is 0)
           alert 'Request is fail'
     })
+

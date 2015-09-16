@@ -17,7 +17,7 @@
 	"operation8": "Quality Control",
 	"operation9": "Manual rework",
 	"operation10": "Robot picking",
-  "type": "Type",
+    "type": "Type",
 	"audi": "Audi",
 	"bmw" : "BMW",
 	"porsche" : "Porsche",
@@ -38,6 +38,10 @@
 	"white":"White",
 	"golden":"Golden",
 	"silver":"Silver",
+
+  	"other": "Other",
+  	"normal": "Normal",
+  	"urgent": "Urgent",
 
   	"submit": "Submit",
   	"welcome": "Now to Industry 4.0",
