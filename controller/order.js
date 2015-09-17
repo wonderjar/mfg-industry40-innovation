@@ -15,3 +15,7 @@ exports.select = function(req, res, next) {
 exports.state = function(req, res, next) {
   res.render('state/state', {});
 };
+
+exports.sharing = function(req, res, next) {
+  res.render('sharing/sharing', {});
+};
