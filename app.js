@@ -11,7 +11,9 @@ var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
 
 var app = express();
+var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost/innovation');
 var acceptLanguage = ['zh','en'];
 //configure i18n
 i18n.configure({

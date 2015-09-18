@@ -16,19 +16,20 @@ body
             #num.order_number=14332456
     .line
     .car
-      img(src="/images/car.jpg")
+      img(src="/images/car.png")
     #status1(class=['tag','tag_left','ready'])
         .text= __('state1')
     #status2(class=['tag','tag_right','ready'])
         .text= __('state2')
     #status3(class=['tag','tag_left','ready'])
         .text= __('state3')
-    .slides
-        - for(var i = 1;i < 11;i++) {
-            .slide
-                .details= __('operation' + i)
-        - }
-    .bottom-line
+    .slides-container
+        .slides
+            - for(var i = 1;i < 11;i++) {
+                .slide
+                    .details= __('operation' + i)
+            - }
+        .bottom-line
     #status5(class=['tag','tag_right','ready'])
         .text= __('state4')
     .complete
