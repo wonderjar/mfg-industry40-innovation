@@ -54,7 +54,7 @@
     "introduction3": "你喜欢吗？",
     "order_please": "我也要买",
 
-    "order_js_src": "/javascripts/order/order_zh.js"
+    "order_js_src": "/javascripts/order/order_zh.js",
     "overview": "总体",
     "male": "男性",
     "female": "女性",
