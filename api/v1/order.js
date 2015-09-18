@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 var Order = require('../../models/order.js');
 
 exports.create = function(req, res, next) {
-
-    mongoose.connect('mongodb://localhost/innovation');
 	console.log(req.body);
 	
 	var newOrder = new Order(req.body);
