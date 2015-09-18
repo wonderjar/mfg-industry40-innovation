@@ -47,7 +47,7 @@ $(document).ready ->
             else
               $('#color'+i).toggleClass 'color-disabled'
         car_type = index
-        if lastPriority is '0'
+        if lastPriority is 0
           $('#price').html('￥'+price_group[car_type])
         else
           $('#price').html('￥'+urgent_price[car_type])
@@ -72,7 +72,7 @@ $(document).ready ->
               else
                 $('#color'+i).toggleClass 'color-disabled'
           car_type = index
-          if lastPriority is '0'
+          if lastPriority is 0
             $('#price').html('￥'+price_group[car_type])
           else
             $('#price').html('￥'+urgent_price[car_type])
@@ -99,7 +99,7 @@ $(document).ready ->
           else
             $('#car-img').attr 'src', connection[0][0]
             $('#carName').text car_name[0][0]
-          if lastPriority is '0'
+          if lastPriority is 0
             $('#price').html('￥'+price_group[0])
           else
             $('#price').html('￥'+urgent_price[0])
@@ -163,7 +163,7 @@ $(document).ready ->
           else
             $('#car-img').attr 'src', connection[0][0]
             $('#carName').text car_name[0][0]
-            if lastPriority is '0'
+            if lastPriority is 0
               $('#price').html('￥'+price_group[0])
             else
               $('#price').html('￥'+urgent_price[0])
