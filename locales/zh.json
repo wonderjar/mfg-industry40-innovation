@@ -3,6 +3,7 @@
     "state2": "订单已在ERP创建",
     "state3": "订单已下达到MES",
     "state4": "订单已生产完成",
+
     "end1": "小车已装配完成",
     "end2": "给它起个好听点的名字吧",
 
@@ -41,6 +42,13 @@
 
     "submit": "下单",
     "welcome": "立即体验工业4.0",
+
+    "greeting": "嘿~",
+    "show_off": "看我的新车。",
+    "introduction1": "黑色的Audi R8",
+    "introduction2": "一次不错的工业4.0体验",
+    "introduction3": "你喜欢吗？",
+    "order_please": "我也要买",
 
     "order_js_src": "/javascripts/order/order_zh.js"
 }

@@ -5,7 +5,7 @@ html
       meta(charset='utf-8')
       link(rel='stylesheet', href='/stylesheets/sharing/sharing.css')
       link(rel='stylesheet', href='/lib/styles/style.css')
-      title= 'I like my new car'
+      title= 'WeChat Share'
       block head
    body
       .top
@@ -15,7 +15,7 @@ html
       .leftd
          .left_img
          .speech.left
-            | Hi!
+            span=__('greeting')
       .leftd
          .left_img
          .speech.left
@@ -24,24 +24,24 @@ html
       .leftd
          .left_img
          .speech.left
-            | Look at my NEW car!
+            span=__('show_off')
       .leftd
          .left_img
          .speech.left
-            | It is Audi R8(blsck).
+            span=__('introduction1')
       .leftd
          .left_img
          .speech.left
-            | It's born with Industry 4.0!
+            span=__('introduction2')
       .leftd
          .left_img
          .speech.left
-            | Isn't this cool?
+            span=__('introduction3')
 
       .bottom
          .bottom-center
             .dialog
-               | I want to one for myself.
+               span=__('order_please')
 
       script(src='/lib/zepto/zepto.js')
       script(src="/javascripts/sharing/sharing.js")
