@@ -53,6 +53,7 @@ app.use(function(req,res,next){
 });
 
 app.use(function(req, res, next) {
+	//TODO 用驼峰命名
   var Auth_code = req.query.code;
   var json_data;
   var user_id = 0;
