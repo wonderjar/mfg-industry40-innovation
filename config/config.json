@@ -5,7 +5,6 @@
     "database": "innovation",
     "host": "127.0.0.1",
     "wechat": {
-    	//You can change this to your local config. But don't commit
     	"appID": "wx4006f6ce87392229",
     	"appsecret": "f9e381646007fb802406418cdc48bb94",
     	"token": "wechat_token"
@@ -15,9 +14,8 @@
     "username": "",
     "password": "",
     "database": "innovation",
-    "host": "127.0.0.1"
+    "host": "127.0.0.1",
     "wechat": {
-    	//You can change this to your local config. But don't commit
     	"appID": "wx4006f6ce87392229",
     	"appsecret": "f9e381646007fb802406418cdc48bb94",
     	"token": "wechat_token"
@@ -29,7 +27,6 @@
     "database": "innovation",
     "host": "127.0.0.1",
     "wechat": {
-    	//You can change this to your local config. But don't commit
     	"appID": "wx4006f6ce87392229",
     	"appsecret": "f9e381646007fb802406418cdc48bb94",
     	"token": "wechat_token"
