@@ -26,7 +26,7 @@ $(document).ready ->
   $('#submit').click ->
     if $('#submit').hasClass('btn-unavailable')
       return
-    PostOrder(car_type, car_color,priority)
+    PostOrder(car_type, car_color,lastPriority)
 
   selCar = (obj,fun,index) ->
     if ($('#' + obj.id).hasClass 'btn-disabled') or ($('#' + obj.id).hasClass 'color-disabled')

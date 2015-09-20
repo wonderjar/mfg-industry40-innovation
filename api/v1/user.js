@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = require('../../models/user.js');
+var User = require('../../test/users.js');
 var UserService = require('../../service/user.js');
 
 exports.create = function(req,res,next){

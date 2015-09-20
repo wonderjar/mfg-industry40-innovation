@@ -1,13 +1,13 @@
 var Q = require('q');
 var mongoose = require('mongoose');
-var Order = require('../../models/order.js');
-var User = require('../../models/user.js');
+var Order = require('../../test/orders.js');
+var User = require('../../test/users.js');
 
 //获取当前所有用户的性别分组
 function getGenderArray(){
 	console.log("start user aggregate");
 	var promise = User.aggregate(
-		{$group:{_id:"$gender", IdArray:{$addToSet: "$userId"}}},
+		{$group:{_id:"$sex", IdArray:{$addToSet: "$_id"}}},
 		function(err,result){
 			console.log("user aggregate finished ");
 			if(1 == result[0]._id){
@@ -27,7 +27,7 @@ function getTypeResult(array){
 	var promise;
 	if(array){
 		promise = Order.aggregate(
-					[{$match: {userId:{$in:array}}},
+					[{$match: {_id:{$in:array}}},
 					{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}}]
 				).exec();
 	}else{
@@ -43,7 +43,7 @@ function getColorResult(array){
 	var promise;
 	if(array){
 		promise = Order.aggregate(
-				[{$match: {userId:{$in:array}}},
+				[{$match: {_id:{$in:array}}},
 				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}]
 		).exec();
 	}else{
