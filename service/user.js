@@ -1,4 +1,6 @@
+var User = require('../../models/user.js');
 
 exports.create = function(user){
-	return user.save(); 
+	var newUser = new User(user);
+	return newUser.save();
 }
