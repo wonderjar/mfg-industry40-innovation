@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-var Order = require('../../test/orders.js');
+var Order = require('../../models/order.js');
 
 
 exports.create = function(req, res, next) {

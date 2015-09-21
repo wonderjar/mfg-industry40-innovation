@@ -30,4 +30,4 @@ var Order = new Schema({
   }
 });
 
-//module.exports = mongoose.model('Order', Order);
+module.exports = mongoose.model('Order', Order);
