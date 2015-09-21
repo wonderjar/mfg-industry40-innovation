@@ -7,7 +7,7 @@ var User = require('../../models/user.js');
 function getGenderArray(){
 	console.log("start user aggregate");
 	var promise = User.aggregate(
-		{$group:{_id:"$gender", IdArray:{$addToSet: "$userId"}}},
+		{$group:{_id:"$sex", IdArray:{$addToSet: "$_id"}}},
 		function(err,result){
 			console.log("user aggregate finished ");
 			if(1 == result[0]._id){
