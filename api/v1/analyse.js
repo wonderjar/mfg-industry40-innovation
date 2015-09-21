@@ -27,7 +27,7 @@ function getTypeResult(array){
 	var promise;
 	if(array){
 		promise = Order.aggregate(
-					[{$match: {_id:{$in:array}}},
+					[{$match: {userId:{$in:array}}},
 					{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}}]
 				).exec();
 	}else{
@@ -43,7 +43,7 @@ function getColorResult(array){
 	var promise;
 	if(array){
 		promise = Order.aggregate(
-				[{$match: {_id:{$in:array}}},
+				[{$match: {userId:{$in:array}}},
 				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}]
 		).exec();
 	}else{
