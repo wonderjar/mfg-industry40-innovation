@@ -1,7 +1,7 @@
 var Q = require('q');
 var mongoose = require('mongoose');
-var Order = require('../../test/orders.js');
-var User = require('../../test/users.js');
+var Order = require('../../models/order.js');
+var User = require('../../models/user.js');
 
 //获取当前所有用户的性别分组
 function getGenderArray(){
