@@ -16,6 +16,15 @@ body{
       color: #666666;
       padding: 6px 0;
       margin: 4px 22px;
+      position: relative;
+    }
+    #price{
+      color: @theme_col;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      margin-left: 76px;
+      font-size: 18px;
     }
   }
   .panel {
@@ -24,6 +33,11 @@ body{
     padding: 1px 0;
     border-radius: 3px;
     .bg_white;
+    .urgent{
+      .priority{
+        margin: 10px 25px;
+      }
+    }
   }
   .btn-primary {
     padding: 6px 3px;
@@ -78,14 +92,14 @@ hr{
   border-top:1px solid @grey;
   margin-top: 5px;
 }
-.type-title,.color-title{
+.type-title,.color-title,.urgent-title{
   margin-left: 10px;
   color: #888888;
   font-size: 12px;
 }
-.car-type,.color{
+.car-type,.color,.urgent{
   margin: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .btn-unavailable {
   background-color: @darker_grey;

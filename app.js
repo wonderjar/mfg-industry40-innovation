@@ -13,9 +13,12 @@ var apiRouter = require('./api_router_v1');
 var wechatHandler = require('./wechat/handler.js');
 
 var app = express();
-
+var mongoose = require('mongoose');
+var insertdata = require('./test/index');
+mongoose.connect('mongodb://localhost/innovation');
 var acceptLanguage = ['zh','en'];
 //configure i18n
+insertdata.insert();
 i18n.configure({
 	  // setup some locales - other locales default to en silently
 	  locales: acceptLanguage,
@@ -56,6 +59,11 @@ app.use('/api/v1', apiRouter);
 app.use('/', wechatHandler);
 
 app.use(express.query());
+
+//var env = process.env.NODE_ENV || "development";
+//if('test' === env) {
+
+//}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
