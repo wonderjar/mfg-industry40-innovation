@@ -9,8 +9,8 @@ var i18nDebug = require('debug')('i18n');
 
 var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
-
 var wechatHandler = require('./wechat/handler.js');
+var http = require('http');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -54,9 +54,45 @@ app.use(function(req,res,next){
 	next();
 });
 
+//app.use(function(req, res, next) {
+//  var authCode = req.query.code;
+//  var jsonData;
+//  var userID = 0;
+//  var getAccessTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd02a571349eedbf6&secret=09cf12b57c6c3b08e35772cf74cabc1a&code='+authCode+'&grant_type=authorization_code';
+//
+//  if(authCode) {
+//    //https request to get access_token&openid
+//    var accesstokenReq = https.get(getAccessTokenUrl,function(res) {
+//        res.on('data', function(chunk) {
+//          jsonData = JSON.parse(chunk);
+//        console.log('access_token:'+jsonData.access_token);
+//        console.log('openid:'+jsonData.openid);
+//
+//        //https request to get user_info
+//          var  getUserInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token='+jsonData.access_token+'&openid='+jsonData.openid+'&lang=zh_CN';
+//          var infoReq = https.get(getUserInfoUrl,function(res){
+//            res.on('data', function(chunk){
+//              var userData = JSON.parse(chunk);
+//              console.log('headimgurl:'+userData.headimgurl);
+//
+//             //TODO save the userInfo and get the userID
+//              req.query.userID = userID;
+//              next();
+//            });
+//          });
+//      });
+//      res.on('end',function(){
+//        console.log('no more data');
+//      });
+//    });
+//  }
+//
+//});
+app.use('/', wechatHandler.resolveWechatUserId);
 app.use('/inno', webRouter);
 app.use('/api/v1', apiRouter);
-app.use('/', wechatHandler);
+
+app.use('/', wechatHandler.resolveWechatMessage);
 
 app.use(express.query());
 
