@@ -11,7 +11,6 @@ var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
 var wechatHandler = require('./wechat/handler.js');
 var http = require('http');
-var https = require('https');
 
 var app = express();
 
@@ -52,44 +51,45 @@ app.use(function(req,res,next){
 	next();
 });
 
-app.use(function(req, res, next) {
-	//TODO 用驼峰命名
-  var Auth_code = req.query.code;
-  var json_data;
-  var user_id = 0;
-  var get_access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd02a571349eedbf6&secret=09cf12b57c6c3b08e35772cf74cabc1a&code='+Auth_code+'&grant_type=authorization_code';
-
-  if(Auth_code) {
-    //https request to get access_token&openid
-    var accesstoken_req = https.get(get_access_token_url,function(res) {
-        res.on('data', function(chunk) {
-          json_data = JSON.parse(chunk);
-        console.log('access_token:'+json_data.access_token);
-        console.log('openid:'+json_data.openid);
-
-        //https request to get user_info
-          var get_userinfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='+json_data.access_token+'&openid='+json_data.openid+'&lang=zh_CN';
-          var info_req = https.get(get_userinfo_url,function(res){
-            res.on('data', function(chunk){
-              var user_data = JSON.parse(chunk);
-              console.log('headimgurl:'+user_data.headimgurl);
-
-             //TODO save the userinfo and get the user_id
-              req.query.user_id = user_id;
-              next();
-            });
-          });
-      });
-      res.on('end',function(){
-        console.log('no more data');
-      });
-    });
-  }
-
-});
+//app.use(function(req, res, next) {
+//  var authCode = req.query.code;
+//  var jsonData;
+//  var userID = 0;
+//  var getAccessTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd02a571349eedbf6&secret=09cf12b57c6c3b08e35772cf74cabc1a&code='+authCode+'&grant_type=authorization_code';
+//
+//  if(authCode) {
+//    //https request to get access_token&openid
+//    var accesstokenReq = https.get(getAccessTokenUrl,function(res) {
+//        res.on('data', function(chunk) {
+//          jsonData = JSON.parse(chunk);
+//        console.log('access_token:'+jsonData.access_token);
+//        console.log('openid:'+jsonData.openid);
+//
+//        //https request to get user_info
+//          var  getUserInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token='+jsonData.access_token+'&openid='+jsonData.openid+'&lang=zh_CN';
+//          var infoReq = https.get(getUserInfoUrl,function(res){
+//            res.on('data', function(chunk){
+//              var userData = JSON.parse(chunk);
+//              console.log('headimgurl:'+userData.headimgurl);
+//
+//             //TODO save the userInfo and get the userID
+//              req.query.userID = userID;
+//              next();
+//            });
+//          });
+//      });
+//      res.on('end',function(){
+//        console.log('no more data');
+//      });
+//    });
+//  }
+//
+//});
+app.use('/', wechatHandler.resolveWechatUserId);
 app.use('/inno', webRouter);
 app.use('/api/v1', apiRouter);
-app.use('/', wechatHandler);
+
+app.use('/', wechatHandler.resolveWechatMessage);
 
 app.use(express.query());
 

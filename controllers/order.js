@@ -10,7 +10,7 @@ exports.show = function(req, res, next) {
 
 exports.select = function(req, res, next) {
   //console.log("openID: ");
-  console.log('orderpage_user_openid: ' + req.query.access_token);
+  console.log('userID: ' + req.query.access_token);
   res.render('order/order', {order_js_src: i18n.__('order_js_src')});
 };
 
