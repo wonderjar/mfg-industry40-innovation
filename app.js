@@ -12,10 +12,11 @@ var apiRouter = require('./api_router_v1');
 
 var app = express();
 var mongoose = require('mongoose');
-
+var insertdata = require('./test/index');
 mongoose.connect('mongodb://localhost/innovation');
 var acceptLanguage = ['zh','en'];
 //configure i18n
+insertdata.insert();
 i18n.configure({
 	  // setup some locales - other locales default to en silently
 	  locales: acceptLanguage,
@@ -52,6 +53,13 @@ app.use(function(req,res,next){
 });
 app.use('/', webRouter);
 app.use('/api/v1', apiRouter);
+
+
+//var env = process.env.NODE_ENV || "development";
+//if('test' === env) {
+
+//}
+
 
 
 

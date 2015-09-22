@@ -112,52 +112,47 @@ $(document).ready ->
         success: (data) ->
           if num is 'tag0'
             for i in [0..4]
-              if !data.male.type[i]
-                TypeCount[i] = data.female.type[i].count
-                if !data.female.type[i]
-                  TypeCount[i] = 0
-              else if !data.female.type[i]
-                TypeCount[i] = data.male.type[i].count
+              if data.all.type[i]
+                TypeCount[i] = data.all.type[i].count
               else
-                TypeCount[i] = data.male.type[i].count + data.female.type[i].count
-              if !data.male.color[i]
-                ColorCount[i] = data.female.color[i].count
-                if !data.female.color[i]
-                  ColorCount[i] = 0
-              else if !data.female.color[i]
-                ColorCount[i] = data.male.color[i].count
-              else
-                ColorCount[i] = data.male.color[i].count + data.female.color[i].count
+                TypeCount[i] = 0
               typeData[i].value = TypeCount[i]
-              colorData[i].value = ColorCount[i]
+            for k in [0..6]
+              if data.all.color[k]
+                ColorCount[k] = data.all.color[k].count
+              else
+                ColorCount[k] = 0
+              colorData[k].value = ColorCount[k]
           else if num is 'tag1'
             for i in [0..4]
               if !data.male.type[i]
                 TypeCount[i] = 0
               else
                 TypeCount[i] = data.male.type[i].count
-              if !data.male.color[i]
-                ColorCount[i] = 0
+            for k in [0..6]
+              if !data.male.color[k]
+                ColorCount[k] = 0
               else
-                ColorCount[i] = data.male.color[i].count
+                ColorCount[k] = data.male.color[k].count
           else
             for i in [0..4]
               if !data.female.type[i]
                 TypeCount[i] = 0
               else
                 TypeCount[i] = data.female.type[i].count
-              if !data.female.color[i]
-                ColorCount[i] = 0
+            for k in [0..6]
+              if !data.female.color[k]
+                ColorCount[k] = 0
               else
-                ColorCount[i] = data.female.color[i].count
+                ColorCount[k] = data.female.color[k].count
           for k in [0..4]
             typeData[k].value = TypeCount[k]
           for j in [0..6]
             colorData[j].value = ColorCount[j]
           ctx = document.getElementById('chart-area').getContext('2d')
           window.myPie = new Chart(ctx).Pie(typeData)
-          console.log TypeCount
-          console.log typeData
+#          console.log TypeCount
+#          console.log typeData
           ctxs = document.getElementById('chart-field').getContext('2d')
           window.myPie = new Chart(ctxs).Pie(colorData)
         error: (xmlHttpRequest, textStatus, errorThrown) ->

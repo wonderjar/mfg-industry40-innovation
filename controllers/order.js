@@ -16,6 +16,10 @@ exports.state = function(req, res, next) {
   res.render('state/state', {});
 };
 
+
+exports.sharing = function(req, res, next) {
+  res.render('sharing/sharing', {});
+};
 exports.anlayse = function(req, res, next) {
   res.render('analyse/display', {display_js_src: i18n.__('display_js_src')});
 };

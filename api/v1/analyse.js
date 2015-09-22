@@ -7,7 +7,7 @@ var User = require('../../models/user.js');
 function getGenderArray(){
 	console.log("start user aggregate");
 	var promise = User.aggregate(
-		{$group:{_id:"$gender", IdArray:{$addToSet: "$userId"}}},
+		{$group:{_id:"$sex", IdArray:{$addToSet: "$_id"}}},
 		function(err,result){
 			console.log("user aggregate finished ");
 			if(1 == result[0]._id){
@@ -22,34 +22,35 @@ function getGenderArray(){
 	return promise;
 }	
 	
-//对所有userId在array中的用户订单，根据车辆类别进行聚合
+//对所有userId在array中的用户订单，根据车辆类别进行聚合。如果array为null，对所有用户进行车辆类别聚合
 function getTypeResult(array){
-	console.log("start male type");
-	return Order.aggregate(
-				{$match: {userId:{$in:array}}},
-				{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}},
-				function(err,result){
-					if(err){
-						console.error(err);
-					}
-					console.log("maleType finished");
-				}
-	);
+	var promise;
+	if(array){
+		promise = Order.aggregate(
+					[{$match: {userId:{$in:array}}},
+					{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}}]
+				).exec();
+	}else{
+		promise = Order.aggregate(
+					[{$group:{_id:"$car.type","type":{$first:"$car.type"},"count":{$sum:1}}}]
+				).exec();
+	}
+	return promise;
 }
 
-//对所有userId在array中的用户订单，根据车辆颜色进行聚合
+//对所有userId在array中的用户订单，根据车辆颜色进行聚合。如果array为null，对所有用户进行车辆颜色聚合
 function getColorResult(array){
-	console.log("start male color");
-	var promise = Order.aggregate(
+	var promise;
+	if(array){
+		promise = Order.aggregate(
 				[{$match: {userId:{$in:array}}},
-				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}],
-				function(err,result){
-					if(err){
-						console.error(err);
-					}
-					console.log("maleColor finished");
-				}
-	);
+				{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}]
+		).exec();
+	}else{
+		promise = Order.aggregate(
+				[{$group:{_id:"$car.color","color":{$first:"$car.color"},"count":{$sum:1}}}]
+		).exec();
+	}
 	return promise;
 }
 
@@ -61,6 +62,10 @@ function getColorResult(array){
  *		 type : [{_id:1, type:1, count:1}, ...]
  *	 },
  *	 female:{
+ *		 color: [{_id:1, type:1, count:1}, ...],
+ *		 type : [{_id:1, type:1, count:1}, ...]
+ *	 },
+ *	 all:{
  *		 color: [{_id:1, type:1, count:1}, ...],
  *		 type : [{_id:1, type:1, count:1}, ...]
  *	 }
@@ -80,10 +85,10 @@ exports.all = function(req,res,next){
 				femaleArray = result[0].IdArray;
 			}
 			Q.all(
-				[getColorResult(maleArray),getTypeResult(maleArray),getColorResult(femaleArray),getTypeResult(femaleArray)]
+				[getColorResult(maleArray),getTypeResult(maleArray),getColorResult(femaleArray),getTypeResult(femaleArray),getColorResult(),getTypeResult()]
 			).done(
 				function(values){
-					if(values.length==4){
+					if(values.length==6){
 						var resultJson = {
 							male:  	{
 								color: values[0],
@@ -92,6 +97,10 @@ exports.all = function(req,res,next){
 							female:	{
 								color: values[2],
 								type: values[3]
+							},
+							all:    {
+								color: values[4],
+								type: values[5]
 							}
 						};
 						res.status(200).json(resultJson);
