@@ -11,8 +11,8 @@ exports.resolveWechatUserId = function(req, res, next) {
   var authCode = req.query.code;
   var jsonData;
   var userID = 0;
-  console.log('code:' + authCode);
   if(authCode) {
+    console.log('code:' + authCode);
     //https request to get access_token&openid
     var getAccessTokenUrl = urlHelper.getAccessTokenUrl(authCode);
     var accesstokenReq = https.get(getAccessTokenUrl, function(res) {
@@ -58,13 +58,3 @@ exports.resolveWechatMessage = wechat(config[env].wechat.token, function(req, re
   console.log(message.FromUserName);
 });
 
-var sharePage = function(){
-
-
-  https.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxd02a571349eedbf6&secret=09cf12b57c6c3b08e35772cf74cabc1a', function(res) {
-    // 这个异步回调里可以获取access_token
-    https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + res.body.access_token +'&type=jsapi', function(_res){
-      // 这个异步回调里可以获取ticket
-    });
-  })
-};

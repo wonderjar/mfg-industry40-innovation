@@ -7,7 +7,8 @@
         "wechat": {
           "appID": "wxd02a571349eedbf6",
           "appsecret": "09cf12b57c6c3b08e35772cf74cabc1a",
-          "token": "wechat_token"
+          "token": "wechat_token",
+          "cacheDuration": 7200000
     }
   },
   "test": {

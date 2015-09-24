@@ -1,0 +1,29 @@
+{
+  "button":[
+
+    {
+      "name":"订单",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"下单",
+          "url" :"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd02a571349eedbf6&redirect_uri=http%3a%2f%2fszekei.imwork.net%3a33202%2finno%2forder%2forder&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+        },
+        {
+          "type":"view",
+          "name":"查询订单状态",
+          "url":"http://v.qq.com/"
+        }]
+    },
+    {
+      "type":"click",
+      "name":"统计",
+      "key":"V1001_TODAY_MUSIC"
+    },
+    {
+      "type":"click",
+      "name":"关于",
+      "key":"V002"
+    }
+  ]
+}
