@@ -15,7 +15,18 @@ var http = require('http');
 var app = express();
 var mongoose = require('mongoose');
 var insertdata = require('./test/index');
-mongoose.connect('mongodb://localhost/innovation');
+
+var config = require('./config/config.json');
+var env = process.env.NODE_ENV || "development";
+var use_db = process.env.USE_DB || config[env].mongodb.USE_DB;
+if('false'!==use_db){
+	var mongoose = require('mongoose');
+	var db_address = config[env].mongodb.ip;
+	var db_name = config[env].mongodb.dbname;
+	var connect = "mongodb://"+db_address+"/"+db_name;
+	mongoose.connect(connect);
+}
+
 var acceptLanguage = ['zh','en'];
 //configure i18n
 insertdata.insert();

@@ -1,35 +1,19 @@
 
 var mongoose = require('mongoose');
 var Order = require('../../models/order.js');
+var OrderService = require('../../service/order.js');
 
 
 exports.create = function(req, res, next) {
-	console.log(req.body);
-	
-	var newOrder = new Order(req.body);
-	newOrder.createTime = (new Date()).toLocaleString();
-	newOrder.save(function(err){
-		if(err){
-			res.status(500).json({
-				message: err
-			});
-		}else{
-			res.status(201).json({
-				orderId: req.body.orderId
-			});
-		}
-		
+	OrderService.create(req.body).then(function(result){
+		res.status(201).json({
+			id: result._id
+		});
+	},function(err){
+		res.status(500).json({
+			message: err
+		});
 	});
 }
 
-exports.find = function(req, res, next) {
-    //TODO find
-    var orderId = req.params.orderId;
-    res.status(200)
-        .json({
-            id: orderId,
-            status: 4,
-            operationId: 3
-        });
-}
 
