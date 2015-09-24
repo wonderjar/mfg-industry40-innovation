@@ -2,22 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Order = new Schema({
-  orderId: {
-    type: Number,
-    require: true
-  },
-  createTime: {
-	  type: String,
-	  require: true
-  },
-  priority: {
-	  type: Number,
-	  require: true
-  },
-  userId: {
-	  type: String,
-	  require: true
-  },
+  _id: Schema.Types.ObjectId,
+  erpOrderId: Number,
+  createTime: String,
+  priority: Number,
+  userId: String,
   car: {
 	  type: {
 		  type: Number,

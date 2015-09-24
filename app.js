@@ -11,9 +11,19 @@ var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
 
 var app = express();
-var mongoose = require('mongoose');
+var config = require('./config/config.json');
+var env = process.env.NODE_ENV || "development";
+var use_db = process.env.USE_DB || config[env].mongodb.USE_DB;
+if('false'!==use_db){
+	var mongoose = require('mongoose');
+	var db_address = config[env].mongodb.ip;
+	var db_name = config[env].mongodb.dbname;
+	var connect = "mongodb://"+db_address+"/"+db_name;
+	mongoose.connect(connect);
+	console.log(connect+" successful connect");
+}
 
-mongoose.connect('mongodb://localhost/innovation');
+
 var acceptLanguage = ['zh','en'];
 //configure i18n
 i18n.configure({
