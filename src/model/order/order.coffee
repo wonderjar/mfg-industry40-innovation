@@ -8,14 +8,13 @@ btn_selected = 'btn-primary btn-selected'
 btn_disabled = 'btn-primary btn-disabled'
 lastType = 'type100'
 lastColor = 'color100'
-lastPriority = 0
+lastPriority = -1
 price = '1830,000'
 car_type = -1
 car_color = -1
 car_image = "car/audi_white.jpg"
 $(document).ready ->
   $('#price').html('￥'+price);
-  $('#priority0').toggleClass 'btn-unselected btn-selected'
   $('button').click ->
     if this.id.indexOf('priority') isnt -1
       selPri(this.id.substring this.id.indexOf('priority') + 8,this.id.indexOf('priority') + 9)
@@ -54,8 +53,9 @@ $(document).ready ->
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#carName').text car_name[car_color][car_type]
-          if $('#submit').hasClass 'btn-unavailable'
-            $('#submit').toggleClass 'btn-unavailable btn-available'
+          if lastPriority isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           for p in [0..3]
             if connection[p][car_type] isnt 0
@@ -79,7 +79,8 @@ $(document).ready ->
           if car_color isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#carName').text car_name[car_color][car_type]
-            $('#submit').toggleClass 'btn-unavailable btn-available'
+            if lastPriority isnt -1
+              $('#submit').toggleClass 'btn-unavailable btn-available'
           else
             for p in [0..3]
               if connection[p][car_type] isnt 0
@@ -99,7 +100,7 @@ $(document).ready ->
           else
             $('#car-img').attr 'src', connection[0][0]
             $('#carName').text car_name[0][0]
-          if lastPriority is 0
+          if lastPriority isnt 1
             $('#price').html('￥'+price_group[0])
           else
             $('#price').html('￥'+urgent_price[0])
@@ -122,8 +123,9 @@ $(document).ready ->
         if car_type isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#carName').text car_name[car_color][car_type]
-          if $('#submit').hasClass 'btn-unavailable'
-            $('#submit').toggleClass 'btn-unavailable btn-available'
+          if lastPriority isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           for u in [0..4]
             if connection[car_color][u] isnt 0
@@ -143,7 +145,8 @@ $(document).ready ->
           if car_type isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#carName').text car_name[car_color][car_type]
-            $('#submit').toggleClass 'btn-unavailable btn-available'
+            if lastPriority isnt -1
+              $('#submit').toggleClass 'btn-unavailable btn-available'
           else
             for u in [0..4]
               if connection[car_color][u] isnt 0
@@ -163,7 +166,7 @@ $(document).ready ->
           else
             $('#car-img').attr 'src', connection[0][0]
             $('#carName').text car_name[0][0]
-            if lastPriority is 0
+            if lastPriority isnt 1
               $('#price').html('￥'+price_group[0])
             else
               $('#price').html('￥'+urgent_price[0])
@@ -171,18 +174,30 @@ $(document).ready ->
   selPri = (index) ->
     if index is '0'
       if lastPriority is 0
-        return
-      else
+        $('#priority0').toggleClass 'btn-unselected btn-selected'
+        lastPriority = -1
+      else if lastPriority is 1
         $('#priority0').toggleClass 'btn-unselected btn-selected'
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+price_group[car_type]);
         lastPriority = 0
-    else
-      if lastPriority is 1
-        return
       else
         $('#priority0').toggleClass 'btn-unselected btn-selected'
+        if car_type isnt -1
+          $('#price').html('￥'+price_group[car_type]);
+        lastPriority = 0
+    else
+      if lastPriority is 1
+        $('#priority1').toggleClass 'btn-unselected btn-selected'
+        lastPriority = -1
+      else if lastPriority is 0
+        $('#priority0').toggleClass 'btn-unselected btn-selected'
+        $('#priority1').toggleClass 'btn-unselected btn-selected'
+        if car_type isnt -1
+          $('#price').html('￥'+urgent_price[car_type])
+        lastPriority = 1
+      else
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+urgent_price[car_type])
