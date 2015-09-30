@@ -1,13 +1,12 @@
 {
-	"state1": "order commited",
+	"state1": "Order Submitted",
 	"state2": "ERP created an order",
-	"state3": "order comes to MES",
-	"state4": "order accomplished",
+	"state3": "Order Comes to MES",
+	"state4": "Order Accomplished",
 
   	"end1": "Production completed.",
   	"end2": "Would you like to name it?",
-
-	"operation1": "Initialization RFID",
+	"operation1": "Initialize RFID",
 	"operation2": "Supplying Chassis",
 	"operation3": "Supplying Mainbody",
 	"operation4": "Supplying windshield",
