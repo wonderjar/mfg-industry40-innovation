@@ -1,7 +1,7 @@
 var users = [];
 module.exports = {
     UserFun: function(){
-        for(var k = 0;k<100;k++){
+        for(var k = 0;k<10;k++){
             var b = {
                 _id: 1000+k+"",
                 sex: Math.round(Math.random()) + 1

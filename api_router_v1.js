@@ -6,7 +6,7 @@ var user = require('./api/v1/user.js');
 
 //test
 router.post('/user/createUser',user.create);
-router.post('/order/createOrder',order.create);
+router.post('/orders',order.create);
 
 router.get('/analyse',analyse.all);
 

@@ -11,6 +11,7 @@ var webRouter = require('./web_router');
 var apiRouter = require('./api_router_v1');
 var wechatHandler = require('./wechat/handler.js');
 var http = require('http');
+var session = require('express-session');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -56,6 +57,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
 app.use(i18n.init);
 i18nDebug('i18n init, acceptLanguage including %s',acceptLanguage.toString());
 app.use(function(req,res,next){
@@ -99,7 +107,7 @@ app.use(function(req,res,next){
 //  }
 //
 //});
-app.use('/wechat', wechatHandler.resolveWechatUserId);
+app.use('/', wechatHandler.resolveWechatUserId);
 app.use('/', webRouter);
 app.use('/api/v1', apiRouter);
 

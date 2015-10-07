@@ -9,7 +9,7 @@ highlightType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
 colorCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
 highlightCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
 
-BaseUrl = 'http://localhost:3000/api/v1/analyse'
+BaseUrl = 'http://wonderjar.tunnel.mobi/api/v1/analyse'
 TypeCount = [0,0,0,0,0]
 ColorCount = [0,0,0,0,0,0,0]
 typeData = [

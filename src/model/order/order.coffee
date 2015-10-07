@@ -204,6 +204,8 @@ $(document).ready ->
         lastPriority = 1
 
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
+  createOrderUrl = 'http://wonderjar.tunnel.mobi/api/v1/orders'
+
   PostOrder = (car_type, car_color,priority) ->
     data = {type: Number(car_type)+1, color: Number(car_color)+1, priority: Number(lastPriority)+1}
     $.ajax({
@@ -215,13 +217,25 @@ $(document).ready ->
       async: true,
       contentType: "application/json",
       crossDomain: true,
-      success: (data) ->
-        if data.salesOrderID
-          alert 'Order ' + data.salesOrderID + ' created'
-          localStorage['orderId'] = data.salesOrderID
+      success: (res) ->
+        if res.salesOrderID
+          alert 'Order ' + res.salesOrderID + ' created'
+          localStorage['orderId'] = res.salesOrderID
           localStorage['img'] = connection[car_color][car_type]
           localStorage['carName'] = car_name[car_color][car_type]
-          window.location = '/order/state'
+          data.erpOrderId = res.salesOrderID
+          $.ajax({
+            url: createOrderUrl,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            cache: false,
+            success: (createRes) ->
+              window.location = '/order/state'
+            error: (xmlHttpRequest, textStatus, errorThrown) ->
+              alert errorThrown
+          })
         else
           alert 'post is fail'
       error: (xmlHttpRequest, textStatus, errorThrown) ->

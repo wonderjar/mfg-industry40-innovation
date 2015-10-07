@@ -5,12 +5,17 @@ var config = require('../config/config.json');
 var env = process.env.NODE_ENV || "development";
 var https = require('https');
 
+var userService = require('../service/user');
 
 exports.resolveWechatUserId = function(req, res, next) {
 	//TODO move code from app.js here
   var authCode = req.query.code;
   var jsonData;
-  var userID = 0;
+
+  if(req.session && req.session.userID) {
+    next();
+  }
+
   if(authCode) {
     console.log('code:' + authCode);
     //https request to get access_token&openid
@@ -30,10 +35,27 @@ exports.resolveWechatUserId = function(req, res, next) {
           res.on('data', function(chunk){
             var userData = JSON.parse(chunk);
             console.log('headimgurl:'+userData.headimgurl);
-
             //TODO save the userInfo and get the userID
-            req.query.userID = userID;
-            next();
+            userService.findByOpenId(openID)
+              .then(function(findRes) {
+                console.log('result');
+                console.log(findRes);
+                if(findRes) {
+                  // req.query.userID = findRes._id;
+                  req.session.userID = findRes._id;
+                  next();
+                }
+                else {
+                  userService.create(userData)
+                    .then(function(createRes) {
+                      console.log('createRes');
+                      console.log(createRes);
+                      // req.query.userID = createRes._id;
+                      req.session.userID = createRes._id;
+                      next();
+                    });            
+                }
+              })
           });
         });
       });
