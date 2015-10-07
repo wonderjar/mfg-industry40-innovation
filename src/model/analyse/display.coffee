@@ -1,8 +1,14 @@
 lastTag = ''
-colorType = ['#F7464A','#46BFBD','#FDB45C','#949FB1','#4D5360']
-colorCol = ['#990066','#FFCC00','#CCD033','#009999','#886699','#FF6600','#006699']
-highlightType = ['#FF5A5E','#5AD3D1','#FFC870','#A8B3C5','#616774']
-highlightCol = ['#FF5A5E','#5AD3D1','#FFC870','#A8B3C5','#616774','#990066','#FFCC00']
+#colorType = ['#F7464A','#46BFBD','#FDB45C','#949FB1','#4D5360']
+#colorCol = ['#990066','#FFCC00','#CCD033','#009999','#886699','#FF6600','#006699']
+#highlightType = ['#FF5A5E','#5AD3D1','#FFC870','#A8B3C5','#616774']
+#highlightCol = ['#FF5A5E','#5AD3D1','#FFC870','#A8B3C5','#616774','#990066','#FFCC00']
+
+colorType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
+highlightType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
+colorCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
+highlightCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
+
 BaseUrl = 'http://localhost:3000/api/v1/analyse'
 TypeCount = [0,0,0,0,0]
 ColorCount = [0,0,0,0,0,0,0]

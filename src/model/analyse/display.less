@@ -6,7 +6,7 @@ ul.class-bar {
   margin: 0 auto;
   margin-top: 20px;
   list-style: none;
-  border: 1px @theme_col solid;
+  border: 1px black solid;
   border-radius: 4px;
   width: 240px;
   height: 33px;
@@ -26,24 +26,25 @@ ul.class-bar {
     height: 26px;
     width: 80px;
     font-size: 14px;
-    border-left: 1px @theme_col solid;
+    border-left: 1px black solid;
     text-align: center;
-    padding-top: 8px;
+    padding-top: 7px;
   }
   .tag-unselected{
-    color: @theme_col;
+    color: black;
+    background-color: white;
   }
   .tag-selected{
-    background-color: @theme_col;
-    color: @bg_color;
+    background-color: black;
+    color: @theme_col;
   }
 }
 .container{
   position: relative;
   .canvas{
     margin: 30px 15px;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
   ul.legend{
     position: absolute;
@@ -51,7 +52,7 @@ ul.class-bar {
     left: 72%;
     display: inline-block;
     list-style: none;
-    font-size: 13px;
+    font-size: 11px;
     padding: 0;
     line-height: 30px;
     .group{
