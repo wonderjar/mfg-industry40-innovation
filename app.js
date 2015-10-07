@@ -13,9 +13,23 @@ var wechatHandler = require('./wechat/handler.js');
 var http = require('http');
 
 var app = express();
+var mongoose = require('mongoose');
+var insertdata = require('./test/index');
+
+var config = require('./config/config.json');
+var env = process.env.NODE_ENV || "development";
+var use_db = process.env.USE_DB || config[env].mongodb.USE_DB;
+if('false'!==use_db){
+	var mongoose = require('mongoose');
+	var db_address = config[env].mongodb.ip;
+	var db_name = config[env].mongodb.dbname;
+	var connect = "mongodb://"+db_address+"/"+db_name;
+	mongoose.connect(connect);
+}
 
 var acceptLanguage = ['zh','en'];
 //configure i18n
+insertdata.insert();
 i18n.configure({
 	  // setup some locales - other locales default to en silently
 	  locales: acceptLanguage,
@@ -85,13 +99,18 @@ app.use(function(req,res,next){
 //  }
 //
 //});
-app.use('/', wechatHandler.resolveWechatUserId);
-app.use('/inno', webRouter);
+app.use('/wechat', wechatHandler.resolveWechatUserId);
+app.use('/', webRouter);
 app.use('/api/v1', apiRouter);
 
-app.use('/', wechatHandler.resolveWechatMessage);
+app.use('/wechat', wechatHandler.resolveWechatMessage);
 
 app.use(express.query());
+
+//var env = process.env.NODE_ENV || "development";
+//if('test' === env) {
+
+//}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

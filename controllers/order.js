@@ -21,9 +21,16 @@ exports.select = function(req, res, next) {
       .then(function(signature) {
         res.render('order/order', {order_js_src: i18n.__('order_js_src'), appId: config[env].wechat.appID, timestamp: timestamp, nonceStr: nonceStr, signature: signature});
       })
-
 };
 
 exports.state = function(req, res, next) {
   res.render('state/state', {});
+};
+
+
+exports.sharing = function(req, res, next) {
+  res.render('sharing/sharing', {});
+};
+exports.anlayse = function(req, res, next) {
+  res.render('analyse/display', {display_js_src: i18n.__('display_js_src')});
 };

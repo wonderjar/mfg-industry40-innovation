@@ -33,10 +33,12 @@ $(document).ready ->
 		timeInterval = 20
 		isMovingStatus = true
 		if(statusId is 5)
-			desTop += 0
+			desTop += 130
 		moveTimer = setInterval (() ->
 			curTop += (speedPerSec / 1000) * timeInterval
 			$('.car').css('top', curTop + 'px')
+			$('#line-left').css('height', curTop + 'px')
+			$('#line-right').css('height', curTop + 'px')
 			if(curTop >= desTop)
 				curStatusId = statusId
 				isMovingStatus = false
@@ -101,7 +103,7 @@ $(document).ready ->
 			})
 	$('#carimg').attr 'src', imgsrc
 	$('#ctitle').text car_name
-	$('#num').text order_id
+	$('#num').text 'No.' + order_id
 	findOrder BaseUrl, order_id
 	setInterval (() -> findOrder BaseUrl, order_id), 2000
 

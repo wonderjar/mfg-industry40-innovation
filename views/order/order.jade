@@ -14,7 +14,8 @@ html
         .image-panel
             img#car-img(src='/lib/car/audi_white.jpg')
             #car-name.car-name
-                span= __('audi_car') + ' [' +__('white') + ']'
+                span#carName= __('audi_car') + ' [' +__('white') + ']'
+                span#price
         .panel
             .car-type
                 .type-title= __('type')
@@ -27,6 +28,12 @@ html
                 .color-list
                     each element,index in [__('white'), __('orange'), __('yellow'), __('black'), __('red'), __('gloden'), __('silver')]
                         button(id='color#{index}', class=['color-primary','color#{index}'])
+                hr
+            .urgent
+                .urgent-title=__('other')
+                .urgent-list
+                    each button,number in [__('normal'), __('urgent')]
+                        button(id='priority#{number}', class=['priority','btn-primary','btn-unselected']) #{button}
             #submit(class=['btn-submit','btn-unavailable'])= __('submit')
 
         script(src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js')

@@ -10,6 +10,7 @@ keep this cmd run and open another cmd to do following actions
 - If you want the node server auto restart when files changes, install nodemon with `npm install nodemon -g` 
 Then start node server with `nodemon bin/www`
 - Open [http://localhost:3000](http://localhost:3000) to check server started
+- If mongodb is needed for your development, refer to [http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
 
 # Code Style
 - Use 2 spaces as tab size and indent size in almost all files(coffee, js, json, jade, less, css)
