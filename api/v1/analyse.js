@@ -10,6 +10,7 @@ function getGenderArray(){
 		{$group:{_id:"$sex", IdArray:{$addToSet: "$_id"}}},
 		function(err,result){
 			console.log("user aggregate finished ");
+			console.log(result);
 			if(1 == result[0]._id){
 				maleArray = result[0].IdArray;
 				femaleArray = result[1].IdArray;

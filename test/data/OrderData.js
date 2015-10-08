@@ -1,3 +1,6 @@
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+
 var orders = [];
 module.exports = {
     OrderFun: function(){
@@ -9,7 +12,7 @@ module.exports = {
         }
         //console.log(JSON.stringify(orderObject));
         for(var o = 0;o<100;o++){
-            var a = {orderId:1000+o,createTime: '9/11/2015, 12:27:58 PM',priority: Math.round(Math.random())+1,userId:1000+o+"",car:{type: orderObject[o][0],color: orderObject[o][1]}};
+            var a = {orderId:new ObjectId(100000000000+o),createTime: '9/11/2015, 12:27:58 PM',priority: Math.round(Math.random())+1,userId:new ObjectId(100000000000+o+""),car:{type: orderObject[o][0],color: orderObject[o][1]}};
             //console.log(JSON.stringify(a));
             orders.push(a);
         }
