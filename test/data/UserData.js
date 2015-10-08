@@ -1,9 +1,12 @@
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+
 var users = [];
 module.exports = {
     UserFun: function(){
         for(var k = 0;k<10;k++){
             var b = {
-                _id: 1000+k+"",
+                _id: new ObjectId(100000000000+k+""),
                 sex: Math.round(Math.random()) + 1
             };
             //console.log(JSON.stringify(b));

@@ -6,7 +6,7 @@ var Order = new Schema({
   erpOrderId: Number,
   createTime: String,
   priority: Number,
-  userId: String,
+  userId: Schema.Types.ObjectId,
   car: {
 	  type: {
 		  type: Number,
