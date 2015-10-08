@@ -116,45 +116,29 @@ $(document).ready ->
         contentType: "application/json",
         crossDomain: true,
         success: (data) ->
+          typeDataArr = []
+          colorDataArr = []
           if num is 'tag0'
-            for i in [0..4]
-              if data.all.type[i]
-                TypeCount[i] = data.all.type[i].count
-              else
-                TypeCount[i] = 0
-              typeData[i].value = TypeCount[i]
-            for k in [0..6]
-              if data.all.color[k]
-                ColorCount[k] = data.all.color[k].count
-              else
-                ColorCount[k] = 0
-              colorData[k].value = ColorCount[k]
+            typeDataArr = data.all.type
+            colorDataArr = data.all.color
           else if num is 'tag1'
-            for i in [0..4]
-              if !data.male.type[i]
-                TypeCount[i] = 0
-              else
-                TypeCount[i] = data.male.type[i].count
-            for k in [0..6]
-              if !data.male.color[k]
-                ColorCount[k] = 0
-              else
-                ColorCount[k] = data.male.color[k].count
+            typeDataArr = data.male.type
+            colorDataArr = data.male.color
           else
-            for i in [0..4]
-              if !data.female.type[i]
-                TypeCount[i] = 0
-              else
-                TypeCount[i] = data.female.type[i].count
-            for k in [0..6]
-              if !data.female.color[k]
-                ColorCount[k] = 0
-              else
-                ColorCount[k] = data.female.color[k].count
-          for k in [0..4]
-            typeData[k].value = TypeCount[k]
-          for j in [0..6]
-            colorData[j].value = ColorCount[j]
+            typeDataArr = data.female.type
+            colorDataArr = data.female.color
+
+          # Clear at first
+          for i in [0..4]
+            typeData[i].value=0
+          for i in [0..6]
+            colorData[i].value=0
+          # Use data
+          for i in [0..typeDataArr.length - 1]
+            typeData[typeDataArr[i].type - 1].value = typeDataArr[i].count
+          for i in [0..colorDataArr.length - 1]
+            colorData[colorDataArr[i].color - 1].value = colorDataArr[i].count
+
           ctx = document.getElementById('chart-area').getContext('2d')
           window.myPie = new Chart(ctx).Pie(typeData)
 #          console.log TypeCount
