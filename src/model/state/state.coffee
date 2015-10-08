@@ -33,12 +33,12 @@ $(document).ready ->
 		timeInterval = 20
 		isMovingStatus = true
 		if(statusId is 5)
-			desTop += 130
+			desTop += 80
 		moveTimer = setInterval (() ->
 			curTop += (speedPerSec / 1000) * timeInterval
 			$('.car').css('top', curTop + 'px')
-			$('#line-left').css('height', curTop + 'px')
-			$('#line-right').css('height', curTop + 'px')
+#			$('#line-left').css('height', curTop + 'px')
+#			$('#line-right').css('height', curTop + 'px')
 			if(curTop >= desTop)
 				curStatusId = statusId
 				isMovingStatus = false
