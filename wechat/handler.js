@@ -13,7 +13,9 @@ exports.resolveWechatUserId = function(req, res, next) {
   var jsonData;
 
   if(req.session && req.session.userID) {
+    console.log('hasSession');
     next();
+    return;
   }
 
   if(authCode) {
@@ -46,6 +48,8 @@ exports.resolveWechatUserId = function(req, res, next) {
                   next();
                 }
                 else {
+                  console.log('userData:');
+                  console.log(userData);
                   userService.create(userData)
                     .then(function(createRes) {
                       console.log('createRes');
@@ -71,12 +75,13 @@ exports.resolveWechatUserId = function(req, res, next) {
 
 exports.resolveWechatMessage = wechat(config[env].wechat.token, function(req, res, next){
   var message = req.weixin;
+  console.log('wechatMessage');
   console.log(message);
   if((message.MsgType === 'event') && (message.Event === 'subscribe'))
   {
     var replyStr = "感谢你的关注！" + "\n"+ "感谢你的关注！" + "\n" + "感谢你的关注！" + "\n"+ "重要的事情说三遍！";
     res.reply(replyStr);
   }
-  console.log(message.FromUserName);
+  //console.log(message.FromUserName);
 });
 

@@ -28,10 +28,6 @@ exports.create = function(req, res, next) {
 		res.status(201).json({
 			id: result._id
 		});
-	}, function(err){
-		res.status(500).json({
-			message: err
-		});
 	});
 }
 

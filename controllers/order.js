@@ -18,7 +18,7 @@ exports.select = function(req, res, next) {
   //var url = req.protocol + '://' + req.hostname + ':33202/inno'+ req.url; //获取当前url
   //Jar uses below one
   var url = req.protocol + '://' + req.hostname + req.url; //获取当前url
-  //console.log("url: "+ url);
+  console.log("url: "+ url);
   console.log('session.userID:' + req.session.userID);
 
   sharingHandler.sign(timestamp, nonceStr, url)
