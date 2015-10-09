@@ -1,13 +1,12 @@
 {
-	"state1": "order commited",
+	"state1": "Order Submitted",
 	"state2": "ERP created an order",
-	"state3": "order comes to MES",
-	"state4": "order accomplished",
+	"state3": "Order Comes to MES",
+	"state4": "Order Accomplished",
 
   	"end1": "Production completed.",
   	"end2": "Would you like to name it?",
-
-	"operation1": "Initialization RFID",
+	"operation1": "Initialize RFID",
 	"operation2": "Supplying Chassis",
 	"operation3": "Supplying Mainbody",
 	"operation4": "Supplying windshield",
@@ -40,15 +39,25 @@
 	"golden":"Golden",
 	"silver":"Silver",
 
+  	"other": "Other",
+  	"normal": "Normal",
+  	"urgent": "Urgent",
+
   	"submit": "Submit",
   	"welcome": "Now to Industry 4.0",
 
   	"greeting": "Hi!",
   	"show_off": "Look at my NEW car!",
-  	"introduction1": "It is Audi R8 (black).",
+  	"introduction1": "It is %s (%s).",
   	"introduction2": "It's born with Industry 4.0!",
   	"introduction3": "Isn't this cool?",
   	"order_please": "I want one for myself.",
 
-  	"order_js_src": "/javascripts/order/order_en.js"
+  	"order_js_src": "/javascripts/order/order_en.js",
+	"overview": "Overview",
+	"male": "Male",
+	"female": "Female",
+
+  	"order_js_src": "/javascripts/order/order_en.js",
+  	"display_js_src": "/javascripts/analyse/display_en.js"
 }

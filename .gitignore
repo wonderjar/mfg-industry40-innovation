@@ -2,6 +2,5 @@ node_modules/
 public/dist/
 public/javascripts/
 public/stylesheets/
-.idea
+.idea/
 npm-debug.log
-test/
