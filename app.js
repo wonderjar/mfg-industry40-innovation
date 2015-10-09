@@ -30,7 +30,11 @@ if('false'!==use_db){
 
 var acceptLanguage = ['zh','en'];
 //configure i18n
-insertdata.insert();
+
+if('test' === env) {
+	insertdata.insert();
+}
+
 i18n.configure({
 	  // setup some locales - other locales default to en silently
 	  locales: acceptLanguage,

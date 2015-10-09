@@ -12,7 +12,7 @@
         {
           "type":"view",
           "name":"查询订单状态",
-          "url":"http://v.qq.com/"
+          "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4006f6ce87392229&redirect_uri=http%3a%2f%2fwonderjar.tunnel.mobi%2forder%2fstate&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
         }]
     },
     {

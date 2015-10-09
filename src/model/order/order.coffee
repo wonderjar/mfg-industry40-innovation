@@ -1,4 +1,4 @@
-connection = [['/lib/car/audi_white.jpg','/lib/car/bwm_white.jpg',0,'/lib/car/ford_white.jpg',0],[0,0,0,'/lib/car/ford_orange.jpg',0],[0,0,0,0,'/lib/car/chevrolet_yellow.jpg'],['/lib/car/audi_black.jpg',0,'/lib/car/porsche_black.jpg',0,0],['/lib/car/audi_red.jpg','/lib/car/bwm_red.jpg','/lib/car/porsche_red.jpg',0,'/lib/car/chevrolet_red.jpg'],[0,'/lib/car/bwm_gold.jpg',0,0,0],[0,0,'/lib/car/porsche_silvery.jpg','/lib/car/ford_silvery.jpg',0]]
+connection = [['/lib/car/audi_white.jpg','/lib/car/bmw_white.jpg',0,'/lib/car/ford_white.jpg',0],[0,0,0,'/lib/car/ford_orange.jpg',0],[0,0,0,0,'/lib/car/chevrolet_yellow.jpg'],['/lib/car/audi_black.jpg',0,'/lib/car/porsche_black.jpg',0,0],['/lib/car/audi_red.jpg','/lib/car/bmw_red.jpg','/lib/car/porsche_red.jpg',0,'/lib/car/chevrolet_red.jpg'],[0,'/lib/car/bmw_gold.jpg',0,0,0],[0,0,'/lib/car/porsche_silvery.jpg','/lib/car/ford_silvery.jpg',0]]
 #car_name = [['奥迪R8 （白）','宝马335i （白）',0,'福特野马 （白）',0],[0,0,0,'福特野马 （橙）',0],[0,0,0,0,'雪弗兰科迈罗 （黄）'],['奥迪R8 （黑）',0,'保时捷Panamera （黑）',0,0],['奥迪R8 （红）','宝马335i （红）','保时捷Panamera （红）',0,'雪弗兰科迈罗 （红）'],[0,'宝马335i （金）',0,0,0],[0,0,'保时捷Panamera （银）','福特野马 （银）',0]]
 #car_title = '奥迪R8 （白）'
 price_group = ['1830,000','300,000','1200,000','500,000','470,000']
@@ -223,6 +223,8 @@ $(document).ready ->
           localStorage['orderId'] = res.salesOrderID
           localStorage['img'] = connection[car_color][car_type]
           localStorage['carName'] = car_name[car_color][car_type]
+          localStorage['type']=car_type
+          localStorage['color']=car_color
           data.erpOrderId = res.salesOrderID
           $.ajax({
             url: createOrderUrl,
