@@ -19,7 +19,7 @@ html
       .leftd
          .left_img
          .speech.left
-            .img-container
+            img(width="200" height="100" src="#{imgSrc}")
 
       .leftd
          .left_img
@@ -28,7 +28,7 @@ html
       .leftd
          .left_img
          .speech.left
-            span=__('introduction1')
+            span #{intro1}
       .leftd
          .left_img
          .speech.left
@@ -41,7 +41,7 @@ html
       .bottom
          .bottom-center
             .dialog
-               span=__('order_please')
+               a(href="/order/order?type=#{typeIndex}&color=#{colorIndex}")=__('order_please')
 
       script(src='/lib/zepto/zepto.js')
       script(src="/javascripts/sharing/sharing.js")

@@ -21,13 +21,13 @@ html
                 .type-title= __('type')
                 .type-list
                     each item,index in [__('audi'), __('bmw'), __('porsche'), __('ford'), __('chevrolet')]
-                        button(id='type#{index}', class=['btn-primary','btn-unselected']) #{item}
+                        button(id='type#{index}', class="btn-primary #{index == typeIndex ? 'btn-selected' : 'btn-unselected'}") #{item}
                 hr
             .color
                 .color-title= __('color')
                 .color-list
                     each element,index in [__('white'), __('orange'), __('yellow'), __('black'), __('red'), __('gloden'), __('silver')]
-                        button(id='color#{index}', class=['color-primary','color#{index}'])
+                        button(id='color#{index}', class="color-primary color#{index} #{index == colorIndex ? 'color-selected' : ''}")
                 hr
             .urgent
                 .urgent-title=__('other')
@@ -35,4 +35,3 @@ html
                     each button,number in [__('normal'), __('urgent')]
                         button(id='priority#{number}', class=['priority','btn-primary','btn-unselected']) #{button}
             #submit(class=['btn-submit','btn-unavailable'])= __('submit')
-
