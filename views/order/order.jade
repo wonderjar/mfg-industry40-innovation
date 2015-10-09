@@ -35,3 +35,10 @@ html
                     each button,number in [__('normal'), __('urgent')]
                         button(id='priority#{number}', class=['priority','btn-primary','btn-unselected']) #{button}
             #submit(class=['btn-submit','btn-unavailable'])= __('submit')
+        script(type = 'text/javascript').
+            var typeIndex = '#{typeIndex}';
+            var colorIndex = '#{colorIndex}';
+            if(typeIndex && colorIndex){
+                $('#type#{typeIndex}').click();
+                $('#color#{colorIndex}').click();
+            }

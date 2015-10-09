@@ -10,10 +10,10 @@ exports.show = function(req, res, next) {
 
 exports.select = function(req, res, next) {
 
-  console.log('session.userID:' + req.session.userID);
+  //console.log('session.userID:' + req.session.userID);
 
-  var typeIndex = req.query.type ? req.query.type : -1;
-  var colorIndex = req.query.color ? req.query.color : -1;
+  var typeIndex = req.query.type;
+  var colorIndex = req.query.color;
 
   res.render('order/order', {
     order_js_src: i18n.__('order_js_src'),
@@ -46,7 +46,7 @@ exports.sharing = function(req, res, next) {
   var imgSrc = 'lib/car/' + type + '_' + color + '.jpg';
   res.render('sharing/sharing', {
     typeIndex: typeIndex,
-    colorIndex: colorIndex, 
+    colorIndex: colorIndex,
     intro1: intro1,
     imgSrc: imgSrc
   });
