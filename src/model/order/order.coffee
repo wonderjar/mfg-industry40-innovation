@@ -46,10 +46,10 @@ $(document).ready ->
             else
               $('#color'+i).toggleClass 'color-disabled'
         car_type = index
-        if lastPriority is 0
-          $('#price').html('￥'+price_group[car_type])
-        else
+        if lastPriority is 1
           $('#price').html('￥'+urgent_price[car_type])
+        else
+          $('#price').html('￥'+price_group[car_type])
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#carName').text car_name[car_color][car_type]
@@ -72,10 +72,10 @@ $(document).ready ->
               else
                 $('#color'+i).toggleClass 'color-disabled'
           car_type = index
-          if lastPriority is 0
-            $('#price').html('￥'+price_group[car_type])
-          else
+          if lastPriority is 1
             $('#price').html('￥'+urgent_price[car_type])
+          else
+            $('#price').html('￥'+price_group[car_type])
           if car_color isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#carName').text car_name[car_color][car_type]
@@ -175,32 +175,49 @@ $(document).ready ->
     if index is '0'
       if lastPriority is 0
         $('#priority0').toggleClass 'btn-unselected btn-selected'
+        if $('#submit').hasClass 'btn-available'
+          $('#submit').toggleClass 'btn-available btn-unavailable'
         lastPriority = -1
       else if lastPriority is 1
         $('#priority0').toggleClass 'btn-unselected btn-selected'
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
-          $('#price').html('￥'+price_group[car_type]);
+          $('#price').html('￥'+price_group[car_type])
+          if car_color isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         lastPriority = 0
       else
         $('#priority0').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
-          $('#price').html('￥'+price_group[car_type]);
+          $('#price').html('￥'+price_group[car_type])
+          if car_color isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         lastPriority = 0
     else
       if lastPriority is 1
         $('#priority1').toggleClass 'btn-unselected btn-selected'
+        $('#price').html('￥'+price_group[car_type])
+        if $('#submit').hasClass 'btn-available'
+            $('#submit').toggleClass 'btn-available btn-unavailable'
         lastPriority = -1
       else if lastPriority is 0
         $('#priority0').toggleClass 'btn-unselected btn-selected'
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+urgent_price[car_type])
+          if car_color isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         lastPriority = 1
       else
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+urgent_price[car_type])
+          if car_color isnt -1
+            if $('#submit').hasClass 'btn-unavailable'
+              $('#submit').toggleClass 'btn-unavailable btn-available'
         lastPriority = 1
 
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
