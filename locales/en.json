@@ -48,7 +48,7 @@
 
   	"greeting": "Hi!",
   	"show_off": "Look at my NEW car!",
-  	"introduction1": "It is Audi R8 (black).",
+  	"introduction1": "It is %s (%s).",
   	"introduction2": "It's born with Industry 4.0!",
   	"introduction3": "Isn't this cool?",
   	"order_please": "I want one for myself.",
