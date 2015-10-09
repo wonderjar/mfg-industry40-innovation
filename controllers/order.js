@@ -42,7 +42,7 @@ exports.sharing = function(req, res, next) {
   var type = typeArr[typeIndex];
   var colorIndex = req.query.color;
   var color = colorArr[colorIndex];
-  var intro1 = 'It is ' + type + ' (' + color + ').';
+  var intro1 = type + ' (' + color + ')';
   var imgSrc = 'lib/car/' + type + '_' + color + '.jpg';
   res.render('sharing/sharing', {
     typeIndex: typeIndex,
