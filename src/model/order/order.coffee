@@ -14,7 +14,7 @@ car_type = -1
 car_color = -1
 car_image = "car/audi_white.jpg"
 $(document).ready ->
-  $('#price').html('￥'+price);
+  $('#price').html('￥'+price)
   $('button').click ->
     if this.id.indexOf('priority') isnt -1
       selPri(this.id.substring this.id.indexOf('priority') + 8,this.id.indexOf('priority') + 9)
@@ -22,6 +22,8 @@ $(document).ready ->
       fun = if this.id.indexOf('type') is -1 then 1 else 0
       num = if fun is 0 then this.id.substring this.id.indexOf('type') + 4,this.id.indexOf('type') + 5 else this.id.substring this.id.indexOf('color') + 5, this.id.indexOf('color') + 6
       selCar this, fun, num
+    checkSubmit()
+
   $('#submit').click ->
     if $('#submit').hasClass('btn-unavailable')
       return
@@ -53,9 +55,6 @@ $(document).ready ->
         if car_color isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#carName').text car_name[car_color][car_type]
-          if lastPriority isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           for p in [0..3]
             if connection[p][car_type] isnt 0
@@ -79,8 +78,6 @@ $(document).ready ->
           if car_color isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#carName').text car_name[car_color][car_type]
-            if lastPriority isnt -1
-              $('#submit').toggleClass 'btn-unavailable btn-available'
           else
             for p in [0..3]
               if connection[p][car_type] isnt 0
@@ -89,7 +86,6 @@ $(document).ready ->
                 break
         else
           obj.className = obj.className.replace 'btn-selected', 'btn-unselected'
-          $('#submit').toggleClass 'btn-available btn-unavailable'
           car_type = -1
           if car_color isnt -1
             for u in [0..4]
@@ -123,9 +119,6 @@ $(document).ready ->
         if car_type isnt -1
           $('#car-img').attr 'src', connection[car_color][car_type]
           $('#carName').text car_name[car_color][car_type]
-          if lastPriority isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
         else
           for u in [0..4]
             if connection[car_color][u] isnt 0
@@ -145,8 +138,6 @@ $(document).ready ->
           if car_type isnt -1
             $('#car-img').attr 'src', connection[car_color][car_type]
             $('#carName').text car_name[car_color][car_type]
-            if lastPriority isnt -1
-              $('#submit').toggleClass 'btn-unavailable btn-available'
           else
             for u in [0..4]
               if connection[car_color][u] isnt 0
@@ -155,7 +146,6 @@ $(document).ready ->
                 break
         else
           $('#'+obj.id).toggleClass 'color-selected'
-          $('#submit').toggleClass 'btn-available btn-unavailable'
           car_color = -1
           if car_type isnt -1
             for p in [0..3]
@@ -171,54 +161,49 @@ $(document).ready ->
             else
               $('#price').html('￥'+urgent_price[0])
 
+  Presel = () ->
+    if typeIndex and colorIndex
+      selCar $('#type' + Number(typeIndex-1))[0], 0, Number(typeIndex-1)
+      selCar $('#color' + Number(colorIndex-1))[0], 1, Number(colorIndex-1)
+    return
+
+  Presel()
   selPri = (index) ->
     if index is '0'
       if lastPriority is 0
         $('#priority0').toggleClass 'btn-unselected btn-selected'
-        if $('#submit').hasClass 'btn-available'
-          $('#submit').toggleClass 'btn-available btn-unavailable'
         lastPriority = -1
-      else if lastPriority is 1
-        $('#priority0').toggleClass 'btn-unselected btn-selected'
-        $('#priority1').toggleClass 'btn-unselected btn-selected'
-        if car_type isnt -1
-          $('#price').html('￥'+price_group[car_type])
-          if car_color isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
-        lastPriority = 0
       else
         $('#priority0').toggleClass 'btn-unselected btn-selected'
+        if lastPriority is 1
+          $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+price_group[car_type])
-          if car_color isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
+        else
+          $('#price').html('￥'+price_group[0])
         lastPriority = 0
     else
       if lastPriority is 1
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         $('#price').html('￥'+price_group[car_type])
-        if $('#submit').hasClass 'btn-available'
-            $('#submit').toggleClass 'btn-available btn-unavailable'
         lastPriority = -1
-      else if lastPriority is 0
-        $('#priority0').toggleClass 'btn-unselected btn-selected'
-        $('#priority1').toggleClass 'btn-unselected btn-selected'
-        if car_type isnt -1
-          $('#price').html('￥'+urgent_price[car_type])
-          if car_color isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
-        lastPriority = 1
       else
+        if lastPriority is 0
+          $('#priority0').toggleClass 'btn-unselected btn-selected'
         $('#priority1').toggleClass 'btn-unselected btn-selected'
         if car_type isnt -1
           $('#price').html('￥'+urgent_price[car_type])
-          if car_color isnt -1
-            if $('#submit').hasClass 'btn-unavailable'
-              $('#submit').toggleClass 'btn-unavailable btn-available'
+        else
+          $('#price').html('￥'+urgent_price[0])
         lastPriority = 1
+
+  checkSubmit = () ->
+    if car_color isnt -1 and car_type isnt -1 and lastPriority isnt -1
+      if $('#submit').hasClass 'btn-unavailable'
+        $('#submit').toggleClass 'btn-unavailable btn-available'
+    else
+      if $('#submit').hasClass 'btn-available'
+        $('#submit').toggleClass 'btn-unavailable btn-available'
 
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
   PostOrder = (car_type, car_color,priority) ->
