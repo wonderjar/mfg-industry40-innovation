@@ -14,6 +14,7 @@ car_type = -1
 car_color = -1
 car_image = "car/audi_white.jpg"
 $(document).ready ->
+  $('#loading').hide()
   $('#price').html('￥'+price)
   $('button').click ->
     if this.id.indexOf('priority') isnt -1
@@ -207,6 +208,7 @@ $(document).ready ->
 
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
   PostOrder = (car_type, car_color,priority) ->
+    $('#loading').show()
     data = {type: Number(car_type)+1, color: Number(car_color)+1, priority: Number(lastPriority)+1}
     $.ajax({
       url: BaseUrl,
@@ -219,6 +221,7 @@ $(document).ready ->
       crossDomain: true,
       success: (data) ->
         if data.salesOrderID
+          $('#loading').hide()
           alert 'Order ' + data.salesOrderID + ' created'
           localStorage['orderId'] = data.salesOrderID
           localStorage['img'] = connection[car_color][car_type]

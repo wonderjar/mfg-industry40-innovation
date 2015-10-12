@@ -11,6 +11,13 @@ html
     body
         script(src = '#{order_js_src}')
         script(src='/javascripts/order/order.js')
+        #loading
+            .cover
+            .spinner
+                each member in [1,2,3]
+                    div(class='spinner-container container#{member}')
+                        each number in [1,2,3,4]
+                            div(class='circle#{number}')
         .image-panel
             img#car-img(src='/lib/car/audi_white.jpg')
             #car-name.car-name
