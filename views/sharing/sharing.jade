@@ -13,27 +13,23 @@ html
             .time
                | Sep 12, 2015 11:44 AM
       .leftd
-         .left_img
+         img(src="#{headImgUrl}").left_img
          .speech.left
             span=__('greeting')
       .leftd
-         .left_img
+         img(src="#{headImgUrl}").left_img
          .speech.left
             img(width="200" height="100" src="#{imgSrc}")
 
       .leftd
-         .left_img
+         img(src="#{headImgUrl}").left_img
          .speech.left
             span=__('show_off')
             span #{intro1}
       .leftd
-         .left_img
+         img(src="#{headImgUrl}").left_img
          .speech.left
-            span=__('introduction2')
-      .leftd
-         .left_img
-         .speech.left
-            span=__('introduction3')
+            span=__('introduction2') + __('introduction3')
 
       .bottom
          .bottom-center

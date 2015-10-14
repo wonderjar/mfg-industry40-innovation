@@ -45,6 +45,9 @@ exports.resolveWechatUserId = function(req, res, next) {
                 if(findRes) {
                   // req.query.userID = findRes._id;
                   req.session.userID = findRes._id;
+
+                  req.query.headImgUrl = findRes.headimgurl;
+
                   next();
                 }
                 else {
@@ -56,6 +59,9 @@ exports.resolveWechatUserId = function(req, res, next) {
                       console.log(createRes);
                       // req.query.userID = createRes._id;
                       req.session.userID = createRes._id;
+
+                      req.query.headImgUrl = createRes.headimgurl;
+
                       next();
                     });            
                 }

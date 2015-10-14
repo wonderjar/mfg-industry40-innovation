@@ -14,6 +14,7 @@ car_type = -1
 car_color = -1
 car_image = "car/audi_white.jpg"
 $(document).ready ->
+  $('#loading').hide()
   $('#price').html('￥'+price)
   $('button').click ->
     if this.id.indexOf('priority') isnt -1
@@ -209,6 +210,7 @@ $(document).ready ->
   createOrderUrl = 'http://wonderjar.tunnel.mobi/api/v1/orders'
 
   PostOrder = (car_type, car_color,priority) ->
+    $('#loading').show()
     data = {type: Number(car_type)+1, color: Number(car_color)+1, priority: Number(lastPriority)+1}
     $.ajax({
       url: BaseUrl,
@@ -236,6 +238,7 @@ $(document).ready ->
             contentType: "application/json",
             cache: false,
             success: (createRes) ->
+              $('#loading').hide()
               window.location = '/order/state'
             error: (xmlHttpRequest, textStatus, errorThrown) ->
               alert errorThrown
