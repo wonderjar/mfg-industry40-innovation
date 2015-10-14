@@ -6,8 +6,8 @@ lastTag = ''
 
 colorType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
 highlightType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
-colorCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
-highlightCol = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC99', '#CCCC33', '#FFCC00']
+colorCol = [white, orange, yellow, black, red, gold, silver]
+highlightCol = [white, orange, yellow, black, red, gold, silver]
 
 BaseUrl = 'http://localhost:3000/api/v1/analyse'
 TypeCount = [0,0,0,0,0]
