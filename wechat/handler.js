@@ -14,6 +14,7 @@ exports.resolveWechatUserId = function(req, res, next) {
 
   if(req.session && req.session.userID) {
     console.log('hasSession');
+    console.log(req.session.userID);
     next();
     return;
   }
@@ -89,5 +90,6 @@ exports.resolveWechatMessage = wechat(config[env].wechat.token, function(req, re
     res.reply(replyStr);
   }
   //console.log(message.FromUserName);
+  next();
 });
 
