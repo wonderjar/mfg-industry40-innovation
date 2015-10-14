@@ -163,8 +163,8 @@ $(document).ready ->
 
   Presel = () ->
     if typeIndex and colorIndex
-      selCar $('#type' + Number(typeIndex-1))[0], 0, Number(typeIndex-1)
-      selCar $('#color' + Number(colorIndex-1))[0], 1, Number(colorIndex-1)
+      selCar $('#type' + Number(typeIndex))[0], 0, Number(typeIndex)
+      selCar $('#color' + Number(colorIndex))[0], 1, Number(colorIndex)
     return
 
   Presel()

@@ -11,11 +11,9 @@ wx.config({
 wx.ready () ->
   type = localStorage['type']
   color = localStorage['color']
-  alert type
-  alert color
   wx.onMenuShareAppMessage({
     title: 'I BOUGHT A NEW CAR!',
-    desc: 'Test Desc',
+    desc: "It's really cool",
     link: 'http://wonderjar.tunnel.mobi/sharing?type=' + type + '&color=' + color,
     imgUrl: 'http://wonderjar.tunnel.mobi' + imgsrc,
     type: 'link',
