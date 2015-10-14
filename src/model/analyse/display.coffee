@@ -1,3 +1,5 @@
+#alert('display')
+
 lastTag = ''
 #colorType = ['#F7464A','#46BFBD','#FDB45C','#949FB1','#4D5360']
 #colorCol = ['#990066','#FFCC00','#CCD033','#009999','#886699','#FF6600','#006699']
@@ -6,8 +8,8 @@ lastTag = ''
 
 colorType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
 highlightType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
-colorCol = [white, orange, yellow, black, red, gold, silver]
-highlightCol = [white, orange, yellow, black, red, gold, silver]
+colorCol = ['white', 'orange', 'yellow', 'black', 'red', 'gold', 'silver']
+highlightCol = ['white', 'orange', 'yellow', 'black', 'red', 'gold', 'silver']
 
 BaseUrl = 'http://wonderjar.tunnel.mobi/api/v1/analyse'
 TypeCount = [0,0,0,0,0]
