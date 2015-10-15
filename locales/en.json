@@ -1,11 +1,11 @@
 {
 	"state1": "Order Submitted",
-	"state2": "ERP created an order",
-	"state3": "Order Comes to MES",
+	"state2": "Order Created in the System",
+	"state3": "Order Delivered to Plant",
 	"state4": "Order Accomplished",
 
   	"end1": "Production completed.",
-  	"end2": "Would you like to name it?",
+  	"end2": "Would you like to share it?",
 	"operation1": "Initialize RFID",
 	"operation2": "Supplying Chassis",
 	"operation3": "Supplying Mainbody",
@@ -39,7 +39,7 @@
 	"golden":"Golden",
 	"silver":"Silver",
 
-  	"other": "Other",
+  	"other": "Urgent",
   	"normal": "Normal",
   	"urgent": "Urgent",
 

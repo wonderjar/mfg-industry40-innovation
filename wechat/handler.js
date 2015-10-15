@@ -86,7 +86,7 @@ exports.resolveWechatMessage = wechat(config[env].wechat.token, function(req, re
   console.log(message);
   if((message.MsgType === 'event') && (message.Event === 'subscribe'))
   {
-    var replyStr = "Thanks for following us on Wechat. ！" + "\n"+ "DIY your own car here, and enjoy！";
+    var replyStr = "Thanks for following us on Wechat!" + "\n"+ "Purchase your customized car here, and enjoy！";
     res.reply(replyStr);
   }
   //console.log(message.FromUserName);

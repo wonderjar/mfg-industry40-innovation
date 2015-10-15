@@ -28,7 +28,7 @@ $(document).ready ->
 		curTop = topStart + (curStatusId - 1) * statusGap
 		desTop = topStart + (statusId - 1) * statusGap
 		if(statusId > 3)
-			desTop += 50
+			desTop += 40
 		speedPerSec = 60
 		timeInterval = 20
 		isMovingStatus = true
@@ -96,7 +96,7 @@ $(document).ready ->
 									break
 						if data.status isnt curStatusId
 							moveToStatus data.status
-						if data.status is 4 and data.operationId isnt curOpeId
+						if not isMovingStatus and data.status is 4 and data.operationId isnt curOpeId
 							moveToOperation data.operationId
 				error: (xmlHttpRequest, textStatus, errorThrown) ->
 					console.log errorThrown
