@@ -111,11 +111,13 @@ app.use(function(req,res,next){
 //  }
 //
 //});
+
+app.use('/wechat', wechatHandler.resolveWechatMessage);
+
 app.use('/', wechatHandler.resolveWechatUserId);
 app.use('/', webRouter);
 app.use('/api/v1', apiRouter);
 
-app.use('/wechat', wechatHandler.resolveWechatMessage);
 
 app.use(express.query());
 

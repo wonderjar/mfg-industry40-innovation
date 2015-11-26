@@ -13,7 +13,7 @@ exports.show = function(req, res, next) {
 
 exports.select = function(req, res, next) {
   //console.log('session.userID:' + req.session.userID);
-
+  console.log('Order controller - select');
   var typeIndex = req.query.type;
   var colorIndex = req.query.color;
 

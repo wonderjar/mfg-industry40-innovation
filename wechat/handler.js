@@ -6,6 +6,7 @@ var env = process.env.NODE_ENV || "development";
 var https = require('https');
 
 var userService = require('../service/user');
+var usedCodeService = require('../service/usedCode');
 
 exports.resolveWechatUserId = function(req, res, next) {
 	//TODO move code from app.js here
@@ -18,65 +19,61 @@ exports.resolveWechatUserId = function(req, res, next) {
     next();
     return;
   }
-
-  if(authCode) {
+  else if(authCode) {
     console.log('code:' + authCode);
-    //https request to get access_token&openid
-    var getAccessTokenUrl = urlHelper.getAccessTokenUrl(authCode);
-    var accesstokenReq = https.get(getAccessTokenUrl, function(res) {
-      console.log(getAccessTokenUrl);
-      res.on('data', function(chunk) {
-        jsonData = JSON.parse(chunk);
-        console.log('access_token:'+jsonData.access_token);
-        console.log('openid:'+jsonData.openid);
-        var accessToken = jsonData.access_token;
-        var openID = jsonData.openid;
+    usedCodeService.findByCode(authCode)
+      .then(function(findCodeRes) {
+        if(findCodeRes) {
+          //Code has been used
+          res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxeff9b9ada388e3e9&redirect_uri=http%3a%2f%2fwonderjar.ngrok.natapp.cn%2forder%2forder&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+        }
+        else {
 
-        //https request to get user_info
-        var  getUserInfoUrl = urlHelper.getUserInfoUrl(accessToken, openID);
-        var infoReq = https.get(getUserInfoUrl,function(res){
-          res.on('data', function(chunk){
-            var userData = JSON.parse(chunk);
-            console.log('headimgurl:'+userData.headimgurl);
-            //TODO save the userInfo and get the userID
-            userService.findByOpenId(openID)
-              .then(function(findRes) {
-                console.log('result');
-                console.log(findRes);
-                if(findRes) {
-                  // req.query.userID = findRes._id;
-                  req.session.userID = findRes._id;
+          //Async
+          usedCodeService.create(authCode);
 
-                  req.query.headImgUrl = findRes.headimgurl;
+          var getAccessTokenUrl = urlHelper.getAccessTokenUrl(authCode);
+          var accesstokenReq = https.get(getAccessTokenUrl, function(res) {
+            console.log(getAccessTokenUrl);
+            res.on('data', function(chunk) {
+              jsonData = JSON.parse(chunk);
+              console.log('access_token:'+jsonData.access_token);
+              console.log('openid:'+jsonData.openid);
+              var accessToken = jsonData.access_token;
+              var openID = jsonData.openid;
 
-                  next();
-                }
-                else {
-                  console.log('userData:');
-                  console.log(userData);
-                  userService.create(userData)
-                    .then(function(createRes) {
-                      console.log('createRes');
-                      console.log(createRes);
-                      // req.query.userID = createRes._id;
-                      req.session.userID = createRes._id;
-
-                      req.query.headImgUrl = createRes.headimgurl;
-
+              userService.findByOpenId(openID)
+                .then(function(findRes) {
+                    if(findRes) {
+                      req.session.userID = findRes._id;
+                      req.query.headImgUrl = findRes.headimgurl;
                       next();
-                    });            
-                }
-              })
+                    }
+                    else {
+                      var getUserInfoUrl = urlHelper.getUserInfoUrl(accessToken, openID);
+                      var infoReq = https.get(getUserInfoUrl,function(res){
+                        res.on('data', function(chunk) {
+                          var userData = JSON.parse(chunk);
+                          console.log(userData);
+                          userService.create(userData)
+                            .then(function(createRes) {
+                              console.log('createRes');
+                              console.log(createRes);
+                              req.session.userID = createRes._id;
+                              req.query.headImgUrl = createRes.headimgurl;
+                              next();
+                            });                          
+                        });
+                      });
+                    }                
+                });
+            });
           });
-        });
+        }
       });
-      res.on('end',function(){
-        console.log('no more data');
-      });
-    });
   }
   else {
-    next();
+    res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxeff9b9ada388e3e9&redirect_uri=http%3a%2f%2fwonderjar.ngrok.natapp.cn%2forder%2forder&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
   }
 };
 
@@ -89,7 +86,9 @@ exports.resolveWechatMessage = wechat(config[env].wechat.token, function(req, re
     var replyStr = "Thanks for following us on Wechat!" + "\n"+ "Purchase your customized car here, and enjoy！";
     res.reply(replyStr);
   }
+  else {
+    res.reply();
+  }
   //console.log(message.FromUserName);
-  next();
 });
 
