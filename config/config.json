@@ -10,8 +10,8 @@
     "database": "innovation",
     "host": "127.0.0.1",
     "wechat": {
-        "appID": "wx4006f6ce87392229",
-        "appsecret": "f9e381646007fb802406418cdc48bb94",
+        "appID": "wxeff9b9ada388e3e9",
+        "appsecret": "b7cc93baf0f0e43d159eeee5563899ab",
         "token": "wechat_token",
         "cacheDuration": 7200000
     }
@@ -27,8 +27,8 @@
     "database": "innovation",
     "host": "127.0.0.1",
     "wechat": {
-        "appID": "wx4006f6ce87392229",
-        "appsecret": "f9e381646007fb802406418cdc48bb94",
+        "appID": "wxeff9b9ada388e3e9",
+        "appsecret": "b7cc93baf0f0e43d159eeee5563899ab",
         "token": "wechat_token"
     }
   },
@@ -43,8 +43,8 @@
     "database": "innovation",
     "host": "127.0.0.1",
     "wechat": {
-        "appID": "wx4006f6ce87392229",
-        "appsecret": "f9e381646007fb802406418cdc48bb94",
+        "appID": "wxeff9b9ada388e3e9",
+        "appsecret": "b7cc93baf0f0e43d159eeee5563899ab",
         "token": "wechat_token"
     }
   }
