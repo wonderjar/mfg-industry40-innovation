@@ -11,7 +11,7 @@ highlightType = ['#66CCCC', '#FF9999', '#FF99CC', '#99CC66', '#FFCC00']
 colorCol = ['white', 'orange', 'yellow', 'black', 'red', 'gold', 'silver']
 highlightCol = ['white', 'orange', 'yellow', 'black', 'red', 'gold', 'silver']
 
-BaseUrl = 'http://wonderjar.tunnel.mobi/api/v1/analyse'
+BaseUrl = 'http://wonderjar.ngrok.natapp.cn/api/v1/analyse'
 TypeCount = [0,0,0,0,0]
 ColorCount = [0,0,0,0,0,0,0]
 typeData = [

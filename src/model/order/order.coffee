@@ -207,7 +207,7 @@ $(document).ready ->
         $('#submit').toggleClass 'btn-unavailable btn-available'
 
   BaseUrl = 'http://p526.coil.sap.com:50003/MFGInno1/rest/WeChatService/createOrder'
-  createOrderUrl = 'http://wonderjar.tunnel.mobi/api/v1/orders'
+  createOrderUrl = 'http://wonderjar.ngrok.natapp.cn/api/v1/orders'
 
   PostOrder = (car_type, car_color,priority) ->
     $('#loading').show()

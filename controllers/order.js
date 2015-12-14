@@ -3,6 +3,8 @@ var sharingHandler = require('../wechat/sharing.js');
 var env = process.env.NODE_ENV || "development";
 var config = require('../config/config.json');
 
+var orderService = require('../service/order');
+
 exports.new = function(req, res, next) {
   res.render('order/order_new', {});
 };
@@ -26,21 +28,39 @@ exports.select = function(req, res, next) {
 };
 
 exports.state = function(req, res, next) {
-  var timestamp = sharingHandler.createTimestamp();
-  var nonceStr = sharingHandler.createNonceStr();
-  var url = req.protocol + '://' + req.hostname + req.url; //获取当前url
-  console.log("url: "+ url);
   console.log('session.userID:' + req.session.userID);
-  sharingHandler.sign(timestamp, nonceStr, url)
-      .then(function(signature) {
-        res.render('state/state', {
-          appId: config[env].wechat.appID, 
-          timestamp: timestamp, 
-          nonceStr: nonceStr, 
-          signature: signature,
-          headImgUrl: req.query.headImgUrl
-        });
-      })
+
+  var userId = req.session.userID;
+  orderService.findLatestOrderByUser(userId)
+    .then(function(latestOrder) {
+      res.render('state/state', {
+        orderId: latestOrder.erpOrderId,
+        type: latestOrder.car.type,
+        color: latestOrder.car.color,
+        headImgUrl: req.query.headImgUrl
+      });
+    })
+
+  res.render('state/state', {
+    headImgUrl: req.query.headImgUrl
+  });
+
+
+  // var timestamp = sharingHandler.createTimestamp();
+  // var nonceStr = sharingHandler.createNonceStr();
+  // var url = req.protocol + '://' + req.hostname + req.url; //获取当前url
+  // console.log("url: "+ url);
+  // console.log('session.userID:' + req.session.userID);
+  // sharingHandler.sign(timestamp, nonceStr, url)
+  //     .then(function(signature) {
+  //       res.render('state/state', {
+  //         appId: config[env].wechat.appID, 
+  //         timestamp: timestamp, 
+  //         nonceStr: nonceStr, 
+  //         signature: signature,
+  //         headImgUrl: req.query.headImgUrl
+  //       });
+  //     })
 };
 
 
